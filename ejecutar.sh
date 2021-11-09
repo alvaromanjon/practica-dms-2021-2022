@@ -12,5 +12,5 @@ if [ $numero_lineas -eq 4 ]
 then
     docker-compose -f docker/config/dev.yml rm -sfv
 fi
-docker-compose -f docker/config/dev.yml build
+#docker-compose -f docker/config/dev.yml build
 docker-compose -f docker/config/dev.yml up -d
