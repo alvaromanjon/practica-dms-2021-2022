@@ -28,3 +28,21 @@ class TeacherEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
         return render_template('teacher.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def add_question(auth_service: AuthService) -> Union[Response, Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        #if Role.Teacher.name not in session['roles']:
+        #    return redirect(url_for('get_home'))
+        name = session['user']
+        return render_template('/questions/add.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def edit_question(auth_service: AuthService) -> Union[Response, Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        #if Role.Teacher.name not in session['roles']:
+        #    return redirect(url_for('get_home'))
+        name = session['user']
+        return render_template('/questions/edit.html', name=name, roles=session['roles'])

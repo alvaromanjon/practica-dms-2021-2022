@@ -25,3 +25,24 @@ class CommonEndpoints():
             return redirect(url_for('get_login'))
         name = session['user']
         return render_template('home.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def get_questions(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/questions/questions.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def do_the_test(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/questions/do_the_test.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def see_answers(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/questions/answers.html', name=name, roles=session['roles'])
