@@ -2,11 +2,12 @@
 """
 
 from typing import Text, Union
-from flask import redirect, url_for, session, render_template
+from flask import redirect, url_for, session, render_template, request, flash
 from werkzeug.wrappers import Response
 from dms2122frontend.data.rest.authservice import AuthService
 from .webauth import WebAuth
-
+from .webuser import WebUser
+from dms2122common.data import Role
 
 class CommonEndpoints():
     """ Monostate class responsible of handling the common web endpoint requests.
@@ -31,7 +32,7 @@ class CommonEndpoints():
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
         name = session['user']
-        return render_template('/questions/questions.html', name=name, roles=session['roles'])
+        return render_template('questions.html', name=name, roles=session['roles'])
 
     @staticmethod
     def do_the_test(auth_service: AuthService) ->Union[Response,Text]:
@@ -46,3 +47,5 @@ class CommonEndpoints():
             return redirect(url_for('get_login'))
         name = session['user']
         return render_template('/questions/answers.html', name=name, roles=session['roles'])
+
+    

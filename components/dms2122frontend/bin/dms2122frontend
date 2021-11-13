@@ -87,9 +87,13 @@ def post_admin_users_edit():
 def get_questions():
     return CommonEndpoints.get_questions(auth_service)
 
+@app.route("/questions/add", methods=['GET'])
+def get_add_question():
+    return TeacherEndpoints.get_add_question(auth_service)
+
 @app.route("/questions/add", methods=['POST'])
-def add_question():
-    return TeacherEndpoints.add_question(auth_service)
+def post_add_question():
+    return TeacherEndpoints.post_add_question(auth_service)
 
 @app.route("/questions/test", methods=['POST'])
 def do_the_test():

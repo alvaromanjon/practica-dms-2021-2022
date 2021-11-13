@@ -80,3 +80,21 @@ class WebUser():
             session.get('token'), username, roles)
         WebUtils.flash_response_messages(response)
         return response.is_successful()
+
+    @staticmethod
+    def create_question(auth_service: AuthService, question: str, option1: str, option2: str, true_answer: str) -> Optional[Dict]:
+        """ Creates a question and then adds it to the test.
+
+        Args:
+            - auth_service (AuthService): The authentication service.
+            - question (str): The question that is created.
+            - answer (str): The answer of the created question.
+
+        Returns:
+            - Dict: A dictionary with the newly created question if successful.
+            - None: Nothing on error.
+        """
+        response: ResponseData = auth_service.create_question(
+            session.get('token'), question, option1, option2, true_answer)
+        WebUtils.flash_response_messages(response)
+        return response.get_content()

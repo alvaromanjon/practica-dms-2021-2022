@@ -1,8 +1,30 @@
 {% extends "questions.html" %}
-{% block title %}{% block subtitle %}{% endblock %}Test{% endblock %}
+{% from "macros/buttons.html" import button, submit_button %}
 {% block contentheading %}Añadir preguntas{% endblock %}
 {% block maincontent %}
-    {% block addcontent %}
-    <p class="yellowbg">Under construction</p>
-    {% endblock %}
+    <form action="/questions/add" method="post">
+        <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
+        <dl>
+            <dt>Pregunta</dt>
+            <dd>
+                <input type="text" name="question" placeholder="Pregunta" autofocus />
+            </dd>
+            <dt>Opción 1</dt>
+            <dd>
+                <input type="text" name="opt1" placeholder="Opción 1" />
+            </dd>
+            <dt>Opción 2</dt>
+            <dd>
+                <input type="text" name="opt2" placeholder="Opción 2" />
+            </dd>
+            <dt>¿Cuál es la respuesta correcta?</dt>
+            <dd>
+                <input type="radio" name="true_answer" placeholder="Opción 1" />Opción 1<br />
+            </dd>
+            <dd>
+                <input type="radio" name="true_answer" placeholder="Opción 2" />Opción 2<br />
+            </dd>
+        </dl>
+        <p class="alignright">{{ submit_button('bluebg', 'Save changes') }}{{ button('redbg', redirect_to, 'Cancel') }}</p>
+    </form>
 {% endblock %}
