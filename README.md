@@ -8,14 +8,7 @@ The goal of this project is to implement a basic online evaluation appliance dep
  * [María Alonso Peláez](https://github.com/map10100)
  * [Álvaro Manjón Vara](https://github.com/alvaromanjon)
  * [Pablo Ahíta del Barrio](https://github.com/pabloahita)
-# Índice
-* [Manual de instalación](#Manual-de-instalación)
-* [Manual de uso](#Manual-de-uso)
-    * [Login](#Login)
-    * [Admin](#Admin)
-    * [Teacher](#Teacher)
-    * [Student](#Student)
-* [Arquitectura y diseño del frontend](#Arquitectura-y-diseño-del-frontend)
+
 ## Components
 
 The source code of the components is available under the `components` direcotry.
@@ -144,11 +137,11 @@ chmod +x /usr/local/bin/docker-compose
 ```bash
 usermod -a -G docker "${USER_NAME}"
 ```
-### Comando de ejecución
-Hemos creado un comando llamado `ejecutar.sh` que se encarga de automatizar el proceso de parada, borrado de los contenedores y re-ejecución de los mismos, lo cual es muy útil a la hora de hacer cambios, ya que hay que volver a ejecutar todo para que se apliquen. Deberemos de darle permisos de ejecución la primera vez que lo usemos con `chmod +x ejecutar.sh`, y después para ejecutarlo usaremos el comando `./ejecutar.sh`.
-
 # Manual de uso 
 Una vez realizados los pasos de instalación, vamos a ver como se utiliza la aplicación.
+
+### Comando de ejecución
+Hemos creado un comando llamado `ejecutar.sh` que se encarga de automatizar el proceso de parada, borrado de los contenedores y re-ejecución de los mismos, lo cual es muy útil a la hora de hacer cambios, ya que hay que volver a ejecutar todo para que se apliquen. Deberemos de darle permisos de ejecución la primera vez que lo usemos con `chmod +x ejecutar.sh`, y después para ejecutarlo usaremos el comando `./ejecutar.sh`.
 ## Login
 Lo primero que nos aparece es la primera ventana que es la de Login.
 En este apartado nos aparecen los campos de usuario y contraseña que el usuario debe instroducir para acceder a la aplicación.
