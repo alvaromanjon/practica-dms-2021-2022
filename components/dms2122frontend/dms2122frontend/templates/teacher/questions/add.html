@@ -7,24 +7,36 @@
         <dl>
             <dt>Pregunta</dt>
             <dd>
-                <input type="text" name="question" placeholder="Pregunta" autofocus />
-            </dd>
+                <input type="text" name="question" size="41" placeholder="Introduce el nombre de la pregunta" autofocus />
+            </dd><br>
+            <dt>Enunciado</dt>
+            <dd>
+                <textarea name="description" rows="7" cols="40" placeholder="Introduce un enunciado"></textarea>
+            </dd><br>
             <dt>Opción 1</dt>
             <dd>
-                <input type="text" name="opt1" placeholder="Opción 1" />
-            </dd>
+                <input type="text" name="opt1" size="41" placeholder="Introduce la primera opción" />
+            </dd><br>
             <dt>Opción 2</dt>
             <dd>
-                <input type="text" name="opt2" placeholder="Opción 2" />
-            </dd>
+                <input type="text" name="opt2" size="41" placeholder="Introduce la segunda opción" />
+            </dd><br>
             <dt>¿Cuál es la respuesta correcta?</dt>
             <dd>
                 <input type="radio" name="true_answer" placeholder="Opción 1" />Opción 1<br />
             </dd>
             <dd>
                 <input type="radio" name="true_answer" placeholder="Opción 2" />Opción 2<br />
-            </dd>
+            </dd><br>
+            <dt>Valor en caso de puntuación correcta</dt>
+            <dd>
+                <input type="number" name="opt2" size="41" placeholder="Porcentaje de suma" />
+            </dd><br>
+            <dt>Valor en caso de puntuación incorrecta</dt>
+            <dd>
+                <input type="number" name="opt2" size="41" placeholder="Porcentaje de resta" />
+            </dd><br>
         </dl>
-        <p class="alignright">{{ submit_button('bluebg', 'Save changes') }}{{ button('redbg', redirect_to, 'Cancel') }}</p>
+        <p class="alignright">{{ submit_button('bluebg', 'Guardar cambios') }}{{ button('redbg', redirect_to, 'Cancelar') }}</p>
     </form>
 {% endblock %}
