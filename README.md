@@ -148,6 +148,7 @@ usermod -a -G docker "${USER_NAME}"
 ```bash
 sudo -u "${SUDO_USER}" code --install-extension ms-azuretools.vscode-docker
 ```
+
 # Manual de uso 
 Una vez realizados los pasos de instalación, vamos a ver como se utiliza la aplicación.
 ## Login
@@ -181,5 +182,9 @@ Por último, si queremos previsualizar una pregunta, de la misma forma que lo ha
 ![teacher5](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/previsuaizar%20teacher.png)
 ## Student 
 Si accedemos a la web con permiso de estudiante solo podremos ver las preguntas y responderlas.
-Primero nos aparece la pantalla con las preguntas que 
+![Student](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/administracion%20student.png)
+Primero nos aparece la pantalla con las preguntas que tenemos dispo0nible y vemos el nombre y enunciado.
+![Student2](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/preguntas%20student.png)
+Si le damos al boton responder nos da la opción de responder las preguntas.
+![Student3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/preguntas%20student.png)
 # Arquitectura y diseño del frontend
