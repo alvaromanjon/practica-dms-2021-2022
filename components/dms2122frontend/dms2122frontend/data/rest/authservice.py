@@ -279,7 +279,7 @@ class AuthService():
         """
         response_data: ResponseData = ResponseData()
         response: requests.Response = requests.post(
-            self.__base_url() + '/questions/add',
+            self.__base_url() + '/teacher/questions/add',
             json={
                 'question': question,
                 'option1': option1,

@@ -1,8 +1,8 @@
-{% extends "questions.html" %}
+{% extends "/teacher/questions.html" %}
 {% from "macros/buttons.html" import button, submit_button %}
 {% block contentheading %}Añadir preguntas{% endblock %}
 {% block maincontent %}
-    <form action="/questions/add" method="post">
+    <form action="/teacher/questions/add" method="post">
         <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
         <dl>
             <dt>Pregunta</dt>

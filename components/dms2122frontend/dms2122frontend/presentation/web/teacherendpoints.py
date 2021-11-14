@@ -30,22 +30,34 @@ class TeacherEndpoints():
         return render_template('teacher.html', name=name, roles=session['roles'])
 
     @staticmethod
+    def get_questions(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/teacher/questions.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def do_the_test(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/questions/do_the_test.html', name=name, roles=session['roles'])
+
+    @staticmethod
+    def see_answers(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        name = session['user']
+        return render_template('/questions/answers.html', name=name, roles=session['roles'])
+
+    @staticmethod
     def add_question(auth_service: AuthService) -> Union[Response, Text]:
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
         #if Role.Teacher.name not in session['roles']:
         #    return redirect(url_for('get_home'))
         name = session['user']
-        return render_template('/questions/add.html', name=name, roles=session['roles'])
-
-    @staticmethod
-    def edit_question(auth_service: AuthService) -> Union[Response, Text]:
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        #if Role.Teacher.name not in session['roles']:
-        #    return redirect(url_for('get_home'))
-        name = session['user']
-        return render_template('/questions/edit.html', name=name, roles=session['roles'])
+        return render_template('/teacher/questions/add.html', name=name, roles=session['roles'])
 
     @staticmethod
     def get_add_question(auth_service: AuthService) -> Union[Response, Text]:
@@ -59,11 +71,11 @@ class TeacherEndpoints():
         """
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.Admin.name not in session['roles']:
+        if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
-        redirect_to = request.args.get('redirect_to', default='/questions')
-        return render_template('/questions/add.html', name=name, roles=session['roles'],
+        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        return render_template('/teacher/questions/add.html', name=name, roles=session['roles'],
                                redirect_to=redirect_to
                                )
 
@@ -79,7 +91,7 @@ class TeacherEndpoints():
         """
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.Admin.name not in session['roles']:
+        if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         '''if request.form['password'] != request.form['confirmpassword']:
             flash('Password confirmation mismatch', 'error')
@@ -96,3 +108,12 @@ class TeacherEndpoints():
         if not redirect_to:
             redirect_to = url_for('get_home')
         return redirect(redirect_to)
+
+    @staticmethod
+    def edit_question(auth_service: AuthService) -> Union[Response, Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+        return render_template('/questions/edit.html', name=name, roles=session['roles'])
