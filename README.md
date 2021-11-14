@@ -179,3 +179,15 @@ Primero nos aparece la pantalla con las preguntas que tenemos dispo0nible y vemo
 Si le damos al boton responder nos da la opción de responder las preguntas.
 ![Student3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/preguntas%20student.png)
 # Arquitectura y diseño del frontend
+En esta práctica hacemos uso del patrón arquitectónico Modelo-Vista-Controlador, Modelo(los datos), la vista(su representación) y el controlador (reacción a las entradas del usuario), estas tres partes estan bien diferenciadas en la práctica.
+Hemos decidido implementar un patrón multicapa, ya que nos permitira separar por capas, ya sean clases. paquetes etc. Los diferentes elementos del código. Esto va a tener la ventaja de que todo este encapsulado y se minimicen las dependencias.
+Este patrón en nuestro caso va a contar con tres capas:
+- Capa de lógica de presentación: Esta capa de lo que se va a encargar es de la interacción entre el usuario y el software.
+- Capa de lógica de datos: Esta capa se encarga de las comunicaciones con otros sistemas que contienen datos con los que tenemos que trabajar
+- Capa de lógica de negocio: Esta última capa se encarga del manejo de la aplicación
+  
+Hemos aplicado en esta práctica el patrón proxy, que se encarga de hacer una referencia compleja a otro objeto cuando es necesaria. En nuestro caso lo hemos aplicado a la hora de declarar los endpoints, ya que podría declararse todo dentro del archivo `dms2122frontend`, pero lo hemos hecho en distintos archivos endpoint y cada uno se encarga de los endpoints que corresponden con cada rol.
+
+Otro de los patrones que usamos es el Método plantilla que define el esqueleto de programa de un algorítmo en un método. De esta forma nos evitamos tener código duplicado.
+
+El patrón de diseño estado se utiliza cuando el comportamiento de un objeto cambia de estado, por ejemplo en nuestro caso el usuario se va a comportar de diferente forma en función del rol que se le asigne ya que no tendrá las mismas funciones.
