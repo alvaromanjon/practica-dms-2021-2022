@@ -7,12 +7,17 @@
         <table class="fillwidth highlightrows">
             <tbody>
                 <tr>
-                    <th class="alignleft">Preguntas</th><th></th>
+                    <th class="alignleft">Listado de preguntas</th><th></th>
                 </tr>
-                {% for user in users %}
-                    <tr class="highlightable">
-                        <td class="alignleft"><a href="/questions/edit?content={{ question['content'] }}&redirect_to=/questions/edit">{{ question['content'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/questions/edit?content=' + question['content'] + '&redirect_to=/questions/edit', 'Editar pregunta') }}</td>
+                <tr>
+                    <th class="alignleft">Nombre</th>
+                    <th class="alignleft">Enunciado</th>
+                </tr>
+                {% for pregunta in preguntas %}    
+                    <tr class=highlightable>
+                        <td class="alignleft">{{ pregunta['nombre_pregunta'] }}</td>
+                        <td class="alignleft">{{ pregunta['enunciado'] }}</td>
+                        <td class="alignright">{{ button('bluebg', '/student/questions/preview?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/student/questions', 'Responder') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
