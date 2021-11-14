@@ -17,7 +17,7 @@
                     <tr class=highlightable>
                         <td class="alignleft">{{ pregunta['nombre_pregunta'] }}</td>
                         <td class="alignleft">{{ pregunta['enunciado'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/student/questions/preview?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/student/questions', 'Responder') }}</td>
+                        <td class="alignright">{{ button('bluebg', '/student/questions/answer?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/student/questions', 'Responder') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

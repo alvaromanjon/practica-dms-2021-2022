@@ -72,5 +72,5 @@ class StudentEndpoints():
         name = session['user']
         nombre_pregunta: str = str(request.args.get('nombre_pregunta'))
         redirect_to = request.args.get('redirect_to', default='/student/questions')
-        return render_template('/student/questions/preview.html', name=name, roles=session['roles'],
+        return render_template('/student/questions/answer.html', name=name, roles=session['roles'],
                                 redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)
