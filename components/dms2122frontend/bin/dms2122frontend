@@ -75,6 +75,10 @@ def get_teacher_add_question():
 def post_teacher_add_question():
     return TeacherEndpoints.post_teacher_add_question(auth_service)
 
+@app.route("/teacher/questions/edit", methods=['GET'])
+def get_teacher_edit_question():
+    return TeacherEndpoints.get_teacher_edit_question(auth_service)
+
 @app.route("/admin", methods=['GET'])
 def get_admin():
     return AdminEndpoints.get_admin(auth_service)

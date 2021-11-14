@@ -87,3 +87,12 @@ class TeacherEndpoints():
         if not redirect_to:
             redirect_to = url_for('get_home')
         return redirect(redirect_to)
+
+    @staticmethod
+    def get_teacher_edit_question(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+        return render_template('/teacher/questions/edit.html', name=name, roles=session['roles'])
