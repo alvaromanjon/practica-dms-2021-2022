@@ -30,9 +30,11 @@ class TeacherEndpoints():
         return render_template('teacher.html', name=name, roles=session['roles'])
 
     @staticmethod
-    def get_questions(auth_service: AuthService) ->Union[Response,Text]:
+    def get_teacher_questions(auth_service: AuthService) ->Union[Response,Text]:
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
         name = session['user']
         return render_template('/teacher/questions.html', name=name, roles=session['roles'])
 
