@@ -1,2 +1,43 @@
-{% extends "/teacher/questions/add.html" %}
-{% block contentheading %}Editar pregunta{% endblock %}
+{% extends "teacher.html" %}
+{% from "macros/buttons.html" import button, submit_button %}
+{% block title %}{% block subtitle %}{% endblock %}Editar pregunta{% endblock %}
+{% block contentsubheading %}Editar {{ nombre_pregunta }}{% endblock %}
+{% block maincontent %}
+    <form action="/teacher/questions/edit" method="post">
+        <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
+        <dl>
+            <dt>Pregunta</dt>
+            <dd>
+                <input type="text" name="question" size="41" value="{{ nombre_pregunta }}" autofocus />
+            </dd><br>
+            <dt>Enunciado</dt>
+            <dd>
+                <textarea name="description" rows="7" cols="40" value="{{ enunciado }}"></textarea>
+            </dd><br>
+            <dt>Opción 1</dt>
+            <dd>
+                <input type="text" name="opt1" size="41" value="{{ opcion1 }}" />
+            </dd><br>
+            <dt>Opción 2</dt>
+            <dd>
+                <input type="text" name="opt2" size="41" value="{{ opcion2 }}" />
+            </dd><br>
+            <dt>¿Cuál es la respuesta correcta?</dt>
+            <dd>
+                <input type="radio" name="true_answer" placeholder="Opción 1" />Opción 1<br />
+            </dd>
+            <dd>
+                <input type="radio" name="true_answer" placeholder="Opción 2" />Opción 2<br />
+            </dd><br>
+            <dt>Valor en caso de puntuación correcta</dt>
+            <dd>
+                <input type="number" name="opt2" size="41" value="{{ porcentaje_correcta }}" />
+            </dd><br>
+            <dt>Valor en caso de puntuación incorrecta</dt>
+            <dd>
+                <input type="number" name="opt2" size="41" value="{{ porcentaje_incorrecta }}" />
+            </dd><br>
+        </dl>
+        <p class="alignright">{{ submit_button('bluebg', 'Guardar cambios') }}{{ button('redbg', redirect_to, 'Cancelar') }}</p>
+    </form>
+{% endblock %}

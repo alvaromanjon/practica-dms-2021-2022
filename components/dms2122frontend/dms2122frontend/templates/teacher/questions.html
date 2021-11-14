@@ -1,13 +1,13 @@
-{% extends "base_logged_in.html" %}
+{% extends "teacher.html" %}
 {% from "macros/buttons.html" import button, submit_button %}
-{% block title %}{% block subtitle %}{% endblock %}Test{% endblock %}
-{% block contentheading %}Preguntas{% endblock %}
+{% block title %}{% block subtitle %}{% endblock %}Gestión de preguntas{% endblock %}
+{% block contentsubheading %}Gestión de preguntas{% endblock %}
 {% block maincontent %}
     {% block questionscontent %}
         <table class="fillwidth highlightrows">
             <tbody>
                 <tr>
-                    <th class="alignleft">Preguntas</th><th></th>
+                    <th class="alignleft">Listado de preguntas</th><th></th>
                 </tr>
                 {% for user in users %}
                     <tr class="highlightable">
