@@ -265,35 +265,3 @@ class AuthService():
             aggregated_response.set_successful(
                 aggregated_response.is_successful() & response.is_successful())
         return aggregated_response
-
-    def create_question(self, token: Optional[str], question: str, option1: str, option2: str, true_answer:str) -> ResponseData:
-        """ Requests a question creation.
-
-        Args:
-            - token (Optional[str]): The user session token.
-            - question (str): The question's content.
-            - answer (str): The question's answer
-
-        Returns:
-            - ResponseData: If successful, the contents hold the new user's data.
-        """
-        response_data: ResponseData = ResponseData()
-        response: requests.Response = requests.post(
-            self.__base_url() + '/teacher/questions/add',
-            json={
-                'question': question,
-                'option1': option1,
-                'option2': option2,
-                'true_answer': true_answer
-            },
-            headers={
-                'Authorization': f'Bearer {token}',
-                self.__apikey_header: self.__apikey_secret
-            }
-        )
-        response_data.set_successful(response.ok)
-        if response_data.is_successful():
-            response_data.set_content(response.json())
-        else:
-            response_data.add_message(response.content.decode('ascii'))
-        return response_data

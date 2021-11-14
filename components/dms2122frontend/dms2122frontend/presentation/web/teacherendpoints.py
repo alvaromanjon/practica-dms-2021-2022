@@ -36,7 +36,34 @@ class TeacherEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
-        return render_template('/teacher/questions.html', name=name, roles=session['roles'])
+
+        preguntas=[{
+            "nombre_pregunta": "Radio del Sol", 
+            "enunciado": "¿Cuál es el radio del Sol?",
+            "opcion1": "696.340 km", 
+            "opcion2": "432.182 km",
+            "respuesta_correcta": 1,
+            "porcentaje_correcta": 10,
+            "porcentaje_incorrecta": 5},
+
+            {"nombre_pregunta": "Distancia Tierra y Sol", 
+            "enunciado": "¿A qué distancia está el Sol de la Tierra?",
+            "opcion1": "28.371.823 km", 
+            "opcion2": "149.597.870 km",
+            "respuesta_correcta": 2,
+            "porcentaje_correcta": 10,
+            "porcentaje_incorrecta": 5},
+
+            {"nombre_pregunta": "Constante G", 
+            "enunciado": "¿Cuál es el valor de la constante de gravitación universal G?",
+            "opcion1": "6,67*10^-11", 
+            "opcion2": "9,8*10^-11",
+            "respuesta_correcta": 1,
+            "porcentaje_correcta": 10,
+            "porcentaje_incorrecta": 5}
+        ]     
+
+        return render_template('/teacher/questions.html', name=name, roles=session['roles'], preguntas=preguntas)
 
     @staticmethod
     def get_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
@@ -55,8 +82,7 @@ class TeacherEndpoints():
         name = session['user']
         redirect_to = request.args.get('redirect_to', default='/teacher/questions')
         return render_template('/teacher/questions/add.html', name=name, roles=session['roles'],
-                               redirect_to=redirect_to
-                               )
+                               redirect_to=redirect_to)
 
     @staticmethod
     def post_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
@@ -95,4 +121,19 @@ class TeacherEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
-        return render_template('/teacher/questions/edit.html', name=name, roles=session['roles'])
+        nombre_pregunta: str = str(request.args.get('nombre_pregunta'))
+        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        return render_template('/teacher/questions/edit.html', name=name, roles=session['roles'],
+                                redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)
+
+    @staticmethod
+    def get_teacher_preview_question(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+        nombre_pregunta: str = str(request.args.get('nombre_pregunta'))
+        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        return render_template('/teacher/questions/preview.html', name=name, roles=session['roles'],
+                                redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)

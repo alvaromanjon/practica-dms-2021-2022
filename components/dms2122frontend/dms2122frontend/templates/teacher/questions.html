@@ -9,10 +9,25 @@
                 <tr>
                     <th class="alignleft">Listado de preguntas</th><th></th>
                 </tr>
-                {% for user in users %}
-                    <tr class="highlightable">
-                        <td class="alignleft"><a href="/questions/edit?content={{ question['content'] }}&redirect_to=/questions/edit">{{ question['content'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/questions/edit?content=' + question['content'] + '&redirect_to=/questions/edit', 'Editar pregunta') }}</td>
+                <tr>
+                    <th class="alignleft">Nombre</th>
+                    <th class="alignleft">Enunciado</th>
+                    <th class="alignleft">Opción 1</th>
+                    <th class="alignleft">Opción 2</th>
+                    <th class="alignleft" width="10%">Respuesta correcta</th>
+                    <th class="alignleft" width="7%">Porcentaje de suma</th>
+                    <th class="alignleft" width="5%">Porcentaje de resta</th>
+                </tr>
+                {% for pregunta in preguntas %}    
+                    <tr class=highlightable>
+                        <td class="alignleft" width="15%">{{ pregunta['nombre_pregunta'] }}</td>
+                        <td class="alignleft" width="25%">{{ pregunta['enunciado'] }}</td>
+                        <td class="alignleft">{{ pregunta['opcion1'] }}</td>
+                        <td class="alignleft">{{ pregunta['opcion2'] }}</td>
+                        <td class="alignleft">{{ pregunta['respuesta_correcta'] }}</td>
+                        <td class="alignleft">{{ pregunta['porcentaje_correcta'] }}</td>
+                        <td class="alignleft">{{ pregunta['porcentaje_incorrecta'] }}</td>
+                        <td class="alignright">{{ button('bluebg', '/teacher/questions/preview?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/teacher/questions', 'Previsualizar') }}{{ button('bluebg', '/teacher/questions/edit?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/teacher/questions', 'Editar') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
