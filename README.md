@@ -161,13 +161,25 @@ Esta aplicación cuenta con tres tipos de usuario:
 
 ## Admin
 Si accedemos como admin nos aparece la ventana "Panel de administración".
-![admin1](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/panel%20administraci%C3%B3n.png)
+![admin1](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/panel%20de%20administraci%C3%B3n.png)
 donde tenemos la opción gestión de usuarios,en este apartado nos sale un formulario de registro en la plataforma donde debemos introducir el usuario, la contraseña y verificar la contraseña. 
-![admin2](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/administrar%20usuarios.png)
-![admin3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/crear%20usuarios.png)
+![admin2](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/administraci%C3%B3n%20usuarios.png)
+![admin3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/crear%20usuario.png)
 Si en la ventana de administrar los usuarios le damos a editar podemos elegir cual de los tres roles va a tener el usuario.
 ![admin4](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/rol.png)
 ## Teacher 
-Si el usuario que accede a la web tiene el rol de profesor, le apareceran las opciones 
+Si el usuario que accede a la web tiene el rol de profesor, le aparecerá la siguiente pantalla:
+![teacher1](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/panel%20teacher.png)
+accedemos y nos aparecera una pantalla en la que podemos visualizar las preguntas, tenemos el botón editar para poder modificalas, previsualizarlas y un botón añadir preguntas.
+
+![teacher2](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/Gestion%20de%20preguntas%20teacher.png)
+si queremos añadir una nueva pregunta, se nos mostrara una pantalla en la que tendremos que rellenar los campos: titulo, enunciado, opciones, que opción es la correcta y los valores en caso de que la pregunta sea correcta o incorrecta.
+![teacher3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/a%C3%B1adir%20pregunta.png)
+si queremos modificar una pregunta, solo debemos pulsar el botón modificar que se encuentra al lado de ella, nos aparecerá una ventana con los mismo campos que en el apartado de crear pregunta y modificaremos lo que sea necesario.
+![teacher4](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/editar%20pregunta.png)
+Por último, si queremos previsualizar una pregunta, de la misma forma que lo haría un estudiante, en la pantalla le aparece el titulo, enunciado y las opciones.
+![teacher5](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/previsuaizar%20teacher.png)
 ## Student 
+Si accedemos a la web con permiso de estudiante solo podremos ver las preguntas y responderlas.
+Primero nos aparece la pantalla con las preguntas que 
 # Arquitectura y diseño del frontend
