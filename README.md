@@ -8,7 +8,7 @@ The goal of this project is to implement a basic online evaluation appliance dep
  * [María Alonso Peláez](https://github.com/map10100)
  * [Álvaro Manjón Vara](https://github.com/alvaromanjon)
  * [Pablo Ahíta del Barrio](https://github.com/pabloahita)
-
+# Índice
 * [Manual de instalación](#Manual-de-instalación)
 * [Manual de uso](#Manual-de-uso)
     * [Login](#Login)
@@ -122,38 +122,51 @@ Este script esta pensado para que funcione con la distribución Ubuntu 20.04.1
 
 Esta es una de las opciones para tener el entorno preparado, en caso de querer hacerlo paso a paso lo primero que debemos hacer es descargarnos una máquina virtual que contenga Ubuntu.20.04.1, ademas también debemos tener descargado Visual Studio. A continuación debemos instalar Docker y docker compose, para ello vamos a serguir los siguientes pasos:
 ### Añadir la clave GPG de Docker:
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 apt-key fingerprint 0EBFCD88
-
+```
 ### Añadir repositorio de Docker
+```bash
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-# ##Instalar Docker
+```
+### Instalar Docker
+```bash
 apt update
 apt install -y docker-ce docker-ce-cli containerd.io
-
+```
 ### Instalar Docker Compose
+```bash
 curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-
+```
 ### Añadir el usuario al grupo docker
+```bash
 usermod -a -G docker "${USER_NAME}"
-
+```
 ### Instalar extensiones de VS Code útiles
+```bash
 sudo -u "${SUDO_USER}" code --install-extension ms-azuretools.vscode-docker
-
+```
 # Manual de uso 
 Una vez realizados los pasos de instalación, vamos a ver como se utiliza la aplicación.
 ## Login
 Lo primero que nos aparece es la primera ventana que es la de Login.
 En este apartado nos aparecen los campos de usuario y contraseña que el usuario debe instroducir para acceder a la aplicación.
+![login](/home/maria/practica-dms-2021-2022-1/imagenes/login.png)
 Esta aplicación cuenta con tres tipos de usuario: 
 - Admin: Este tipo de usuario cuenta con todos los permisos y a partir de el se podrán crear nuevos usuarios dandoles los permisos correspondientes (usuario: admin, Contraseña: admin)
 - Teacher: El usuario con el rol de profesor tiene los permisos necesarios para crear y editar preguntas asi como visualizarlas, podrá ver cuantas veces se ha seleccionado cada respuesta y obtener un promedio de ellas y finalmente ver el progreso de los alumnos.
 - Student: Este usuario podrá ver las preguntas que tiene pendientes y contestarlas. Tambien podrá ver su progeso en la plataforma.
 
 ## Admin
-Si accedemos como admin nos aparece la ventana "Panel de administración" donde tenemos la opción gestión de usuarios, en este apartado nos sale un formulario de registro en la plataforma donde debemos introducir el usuario, la contraseña y verificar la contraseña. Si le damos a editar podemos elegir cual de los tres roles va a tener el usuario.
+Si accedemos como admin nos aparece la ventana "Panel de administración".
+![admin1](/home/maria/practica-dms-2021-2022-1/imagenes/panel administración.png)
+donde tenemos la opción gestión de usuarios,en este apartado nos sale un formulario de registro en la plataforma donde debemos introducir el usuario, la contraseña y verificar la contraseña. 
+![admin2](/home/maria/practica-dms-2021-2022-1/imagenes/administrar usuarios.png)
+![admin3](/home/maria/practica-dms-2021-2022-1/imagenes/crear usuarios.png)
+Si en la ventana de administrar los usuarios le damos a editar podemos elegir cual de los tres roles va a tener el usuario.
+![admin4](/home/maria/practica-dms-2021-2022-1/imagenes/rol.png)
 ## Teacher 
 Si el usuario que accede a la web tiene el rol de profesor, le apareceran las opciones 
 ## Student 
