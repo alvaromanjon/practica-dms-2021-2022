@@ -144,10 +144,8 @@ chmod +x /usr/local/bin/docker-compose
 ```bash
 usermod -a -G docker "${USER_NAME}"
 ```
-### Instalar extensiones de VS Code útiles
-```bash
-sudo -u "${SUDO_USER}" code --install-extension ms-azuretools.vscode-docker
-```
+### ejecutar.sh
+
 
 # Manual de uso 
 Una vez realizados los pasos de instalación, vamos a ver como se utiliza la aplicación.
