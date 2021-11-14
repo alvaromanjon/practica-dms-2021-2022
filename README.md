@@ -144,8 +144,8 @@ chmod +x /usr/local/bin/docker-compose
 ```bash
 usermod -a -G docker "${USER_NAME}"
 ```
-### ejecutar.sh
-
+### Comando de ejecución
+Hemos creado un comando llamado `ejecutar.sh` que se encarga de automatizar el proceso de parada, borrado de los contenedores y re-ejecución de los mismos, lo cual es muy útil a la hora de hacer cambios, ya que hay que volver a ejecutar todo para que se apliquen. Deberemos de darle permisos de ejecución la primera vez que lo usemos con `chmod +x ejecutar.sh`, y después para ejecutarlo usaremos el comando `./ejecutar.sh`.
 
 # Manual de uso 
 Una vez realizados los pasos de instalación, vamos a ver como se utiliza la aplicación.
