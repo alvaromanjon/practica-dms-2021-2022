@@ -28,3 +28,12 @@ class StudentEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
         return render_template('student.html', name=name, roles=session['roles'])
+    
+    @staticmethod
+    def get_student_questions(auth_service: AuthService) ->Union[Response,Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Student.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+        return render_template('/student/questions.html', name=name, roles=session['roles'])

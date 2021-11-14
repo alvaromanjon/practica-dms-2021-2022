@@ -39,30 +39,7 @@ class TeacherEndpoints():
         return render_template('/teacher/questions.html', name=name, roles=session['roles'])
 
     @staticmethod
-    def do_the_test(auth_service: AuthService) ->Union[Response,Text]:
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        name = session['user']
-        return render_template('/questions/do_the_test.html', name=name, roles=session['roles'])
-
-    @staticmethod
-    def see_answers(auth_service: AuthService) ->Union[Response,Text]:
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        name = session['user']
-        return render_template('/questions/answers.html', name=name, roles=session['roles'])
-
-    @staticmethod
-    def add_question(auth_service: AuthService) -> Union[Response, Text]:
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        #if Role.Teacher.name not in session['roles']:
-        #    return redirect(url_for('get_home'))
-        name = session['user']
-        return render_template('/teacher/questions/add.html', name=name, roles=session['roles'])
-
-    @staticmethod
-    def get_add_question(auth_service: AuthService) -> Union[Response, Text]:
+    def get_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
         """ Handles the GET requests to the questions creation endpoint.
 
         Args:
@@ -82,7 +59,7 @@ class TeacherEndpoints():
                                )
 
     @staticmethod
-    def post_add_question(auth_service: AuthService) -> Union[Response, Text]:
+    def post_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
         """ Handles the POST requests to the questions creation endpoint.
 
         Args:
@@ -97,7 +74,7 @@ class TeacherEndpoints():
             return redirect(url_for('get_home'))
         '''if request.form['password'] != request.form['confirmpassword']:
             flash('Password confirmation mismatch', 'error')
-            return redirect(url_for('get_add_question'))'''
+            return redirect(url_for('get_teacher_add_question'))'''
         created_question = WebUser.create_question(auth_service,
                                            request.form['question'], 
                                            request.form['opt1'],
@@ -105,17 +82,8 @@ class TeacherEndpoints():
                                            request.form['true_answer']
                                            )
         if not created_question:
-            return redirect(url_for('get_add_question'))
+            return redirect(url_for('get_teacher_add_question'))
         redirect_to = request.form['redirect_to']
         if not redirect_to:
             redirect_to = url_for('get_home')
         return redirect(redirect_to)
-
-    @staticmethod
-    def edit_question(auth_service: AuthService) -> Union[Response, Text]:
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        if Role.Teacher.name not in session['roles']:
-            return redirect(url_for('get_home'))
-        name = session['user']
-        return render_template('/questions/edit.html', name=name, roles=session['roles'])

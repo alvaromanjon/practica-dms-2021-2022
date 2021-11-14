@@ -55,9 +55,25 @@ def get_home():
 def get_student():
     return StudentEndpoints.get_student(auth_service)
 
+@app.route("/student/questions", methods=['GET'])
+def get_student_questions():
+    return StudentEndpoints.get_student_questions(auth_service)
+
 @app.route("/teacher", methods=['GET'])
 def get_teacher():
     return TeacherEndpoints.get_teacher(auth_service)
+
+@app.route("/teacher/questions", methods=['GET'])
+def get_teacher_questions():
+    return TeacherEndpoints.get_teacher_questions(auth_service)
+
+@app.route("/teacher/questions/add", methods=['GET'])
+def get_teacher_add_question():
+    return TeacherEndpoints.get_teacher_add_question(auth_service)
+
+@app.route("/teacher/questions/add", methods=['POST'])
+def post_teacher_add_question():
+    return TeacherEndpoints.post_teacher_add_question(auth_service)
 
 @app.route("/admin", methods=['GET'])
 def get_admin():
@@ -82,30 +98,6 @@ def get_admin_users_edit():
 @app.route("/admin/users/edit", methods=['POST'])
 def post_admin_users_edit():
     return AdminEndpoints.post_admin_users_edit(auth_service)
-
-@app.route("/teacher/questions", methods=['GET'])
-def get_teacher_questions():
-    return TeacherEndpoints.get_teacher_questions(auth_service)
-
-@app.route("/teacher/questions/add", methods=['GET'])
-def get_add_question():
-    return TeacherEndpoints.get_add_question(auth_service)
-
-@app.route("/teacher/questions/add", methods=['POST'])
-def post_add_question():
-    return TeacherEndpoints.post_add_question(auth_service)
-
-@app.route("/questions/test", methods=['POST'])
-def do_the_test():
-    return TeacherEndpoints.do_the_test(auth_service)
-
-@app.route("/questions/edit", methods=['POST'])
-def edit_question():
-    return TeacherEndpoints.edit_question(auth_service)
-
-@app.route("/questions/see_answers", methods=['GET'])
-def see_answers():
-    return TeacherEndpoints.see_answers(auth_service)
 
 if __name__ == '__main__':
     app.run(
