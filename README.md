@@ -153,7 +153,7 @@ Una vez realizados los pasos de instalación, vamos a ver como se utiliza la apl
 ## Login
 Lo primero que nos aparece es la primera ventana que es la de Login.
 En este apartado nos aparecen los campos de usuario y contraseña que el usuario debe instroducir para acceder a la aplicación.
-![login](/home/maria/practica-dms-2021-2022-1/imagenes/login.png)
+![login](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/login.png)
 Esta aplicación cuenta con tres tipos de usuario: 
 - Admin: Este tipo de usuario cuenta con todos los permisos y a partir de el se podrán crear nuevos usuarios dandoles los permisos correspondientes (usuario: admin, Contraseña: admin)
 - Teacher: El usuario con el rol de profesor tiene los permisos necesarios para crear y editar preguntas asi como visualizarlas, podrá ver cuantas veces se ha seleccionado cada respuesta y obtener un promedio de ellas y finalmente ver el progreso de los alumnos.
