@@ -6,21 +6,13 @@
 <form action="/teacher/questions/preview" method="post">
     <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
     <dl>
-        <dt>Pregunta</dt>
-        <dd>
+        <h2>Pregunta</h2>
             <p>{{ nombre_pregunta }}</p>
-        </dd><br>
-        <dt>Enunciado</dt>
-        <dd>
+        <h2>Enunciado</h2>
             <p>Enunciado de la pregunta</p>
-        </dd><br>
-        <dt>¿Cuál es la respuesta correcta?</dt>
-        <dd>
+        <h2>¿Cuál es la respuesta correcta?</h2>
             <input type="radio" name="true_answer" placeholder="Opción 1" />Opción 1<br />
-        </dd>
-        <dd>
             <input type="radio" name="true_answer" placeholder="Opción 2" />Opción 2<br />
-        </dd><br>
     </dl>
     <p class="alignright">{{ submit_button('bluebg', 'Contestar') }}{{ button('redbg', redirect_to, 'Cancelar') }}</p>
 </form>
