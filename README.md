@@ -161,13 +161,13 @@ Esta aplicación cuenta con tres tipos de usuario:
 
 ## Admin
 Si accedemos como admin nos aparece la ventana "Panel de administración".
-![admin1](/home/maria/practica-dms-2021-2022-1/imagenes/panel administración.png)
+![admin1](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/panel%20administraci%C3%B3n.png)
 donde tenemos la opción gestión de usuarios,en este apartado nos sale un formulario de registro en la plataforma donde debemos introducir el usuario, la contraseña y verificar la contraseña. 
-![admin2](/home/maria/practica-dms-2021-2022-1/imagenes/administrar usuarios.png)
-![admin3](/home/maria/practica-dms-2021-2022-1/imagenes/crear usuarios.png)
+![admin2](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/administrar%20usuarios.png)
+![admin3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/crear%20usuarios.png)
 Si en la ventana de administrar los usuarios le damos a editar podemos elegir cual de los tres roles va a tener el usuario.
-![admin4](/home/maria/practica-dms-2021-2022-1/imagenes/rol.png)
+![admin4](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/5afd0384b803009a0e7b883ddd96b233aac535d8/imagenes/rol.png)
 ## Teacher 
 Si el usuario que accede a la web tiene el rol de profesor, le apareceran las opciones 
 ## Student 
-
+# Arquitectura y diseño del frontend
