@@ -60,6 +60,12 @@ The UI has the following templates hierarchy and structure:
     - `admin/users.html`: Users administration listing. Blocks used: `contentsubheading`, `administrationcontent`. Macros used: `button`.
     - `admin/users/new.html`: User creation form page. Blocks used: `contentsubheading`, `administrationcontent`. Macros used: `button`, `submit_button`.
     - `admin/users/edit.html`: User editing form page. Blocks used: `contentsubheading`, `administrationcontent`. Macros used: `button`, `submit_button`.
+    - `student/questions.html`: Question listing. Blocks used`: `title`, `subtitle`, `contentsubheading`, `maincontent`, `questionscontent`, `submit_button`.
+    - `student/questions/answer.html`: Question answer panel. Blocks used: `title`, `subtitle`, `contentsubheading`, `maincontent`, `submit_button`.
+    - `teacher/questions`: Question administration panel. Blocks used: `title`, `subtitle`, `contentsubheading`, `maincontent`, `questionscontent`, `submit_button`.
+    - `teacher/questions/edit.html`: Question edition panel. Blocks used: `title`, `subtitle`, `contentsubheading`, `maincontent`, `submit_button`.
+    - `teacher/questions/add.html`: Question addition panel. Blocks used: `title`, `subtitle`, `contentsubheading`, `maincontent`, `submit_button`.
+    - `teacher/questions/preview.html`: Question preview panel. Blocks used: `title`, `subtitle`, `contentsubheading`, `maincontent`, `submit_button`.
 
 The following macros/components are provided:
 
