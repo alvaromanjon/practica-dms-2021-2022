@@ -1,2 +1,4 @@
-""" Backend database-related modules.
+""" Authentication database-related modules.
 """
+
+from .schema import Schema
