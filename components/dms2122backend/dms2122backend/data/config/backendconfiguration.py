@@ -32,6 +32,13 @@ class BackendConfiguration(ServiceConfiguration):
         self.set_jws_secret('This JWS secret should be changed ASAP')
         self.set_jws_ttl(3600)
         self.set_authorized_api_keys([])
+        self.set_auth_service(
+            {
+                "host": "172.10.1.10",
+                "port": 4000,
+                "apikey_secret": "This should be the frontend API key",
+            }
+        )
 
     def _set_values(self, values: Dict) -> None:
         """Sets/merges a collection of configuration values.
@@ -49,6 +56,8 @@ class BackendConfiguration(ServiceConfiguration):
             self.set_jws_secret(values['jws_secret'])
         if 'jws_ttl' in values:
             self.set_jws_ttl(values['jws_ttl'])
+        if "auth_service" in values:
+            self.set_auth_service(values["auth_service"])
 
     def set_db_connection_string(self, db_connection_string: str) -> None:
         """ Sets the db_connection_string configuration value.
@@ -129,3 +138,24 @@ class BackendConfiguration(ServiceConfiguration):
         """
 
         return int(self._values['jws_ttl'])
+
+    def set_auth_service(self, auth_service: Dict) -> None:
+        """Sets the connection parameters for the authentication service.
+        
+        Args:
+            auth_service (Dict): Parameters to connect to the authentication service.
+        
+        Raises:
+            - ValueError: If validation is not passed.
+        """
+        
+        self._values["auth_service"] = auth_service
+
+    def get_auth_service(self) -> Dict:
+        """ Gets the authentication service configuration value.
+        
+        Returns:
+            - Dict: A dictionary with the value of auth_service.
+        """
+
+        return self._values["auth_service"]
