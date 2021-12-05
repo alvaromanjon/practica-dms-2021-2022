@@ -6,9 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session  # type: ignore
 from sqlalchemy.orm.exc import NoResultFound  # type: ignore
 from dms2122backend.data.db.exc import QuestionNotFoundError  # type: ignore
-from dms2122auth.data.db.results import Answer
-from dms2122backend.data.db.results import question
-
+from dms2122backend.data.db.results import Answer
 
 class Answers():
     """ Class responsible of table-level answers operations.
@@ -78,7 +76,7 @@ class Answers():
         if not questionId:
             raise ValueError('A questionId is required.')
         query = session.query(Answer).filter_by(
-            questionId=question
+            questionId=questionId
         )
         return query.all()
 
