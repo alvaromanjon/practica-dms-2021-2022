@@ -2,8 +2,7 @@
 """
 
 from typing import Dict
-from sqlalchemy import Table, MetaData, Column, String, Integer
-from sqlalchemy.orm import relationship  # type: ignore
+from sqlalchemy import Table, MetaData, Column, String, Integer, relationship  # type: ignore
 from sqlalchemy.sql.sqltypes import Float  # type: ignore
 from dms2122backend.data.db.results.resultbase import ResultBase
 from dms2122backend.data.db.results.answer import Answer
