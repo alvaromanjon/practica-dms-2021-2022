@@ -7,6 +7,8 @@ from dms2122common.data import Role
 from dms2122common.data.rest import ResponseData
 from typing import Optional
 
+from dms2122frontend.data.rest.authservice import AuthService
+
 
 class BackendService():
     """ REST client to connect to the backend service.
@@ -38,7 +40,7 @@ class BackendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    def create_question(self, token: Optional[str], question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
+    def create_question(self, auth_service: AuthService, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
         """ Requests a user creation.
 
         Args:
@@ -62,7 +64,7 @@ class BackendService():
                 'incorrect_answer_percentage': incorrect_question_percentage
             },
             headers={
-                'Authorization': f'Bearer {token}',
+                'Authorization': f'Bearer {auth_service}',
                 self.__apikey_header: self.__apikey_secret
             }
         )
