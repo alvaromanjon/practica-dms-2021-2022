@@ -1,11 +1,11 @@
-""" REST API controllers responsible of handling the user operations.
+""" REST API controllers responsible of handling the question operations.
 """
 
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
 from flask import current_app # type: ignore
 from dms2122auth.service.roleservices import RoleServices # type: ignore
-from dms2122backend.data.db.exc import QuestionExistsError, QuestionNotFoundError
+from dms2122backend.data.db.exc import QuestionExistsError
 from dms2122backend.service import QuestionServices
 from dms2122backend.data.db.results import Question
 from dms2122common.data.role import Role
