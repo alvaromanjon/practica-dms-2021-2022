@@ -5,7 +5,7 @@ from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
 from flask import current_app # type: ignore
 from dms2122auth.service.roleservices import RoleServices # type: ignore
-from dms2122backend.data.db.exc import QuestionExistsError, QuestionNotFoundError
+from dms2122backend.data.db.exc import QuestionNotFoundError
 from dms2122backend.service import AnswerServices
 from dms2122backend.data.db.results import Answer
 from dms2122common.data.role import Role
@@ -30,7 +30,7 @@ def create_answer(body: Dict, token_info: Dict) -> Tuple[Optional[str], Optional
                 HTTPStatus.FORBIDDEN.value
             )
         try:
-            AnswerServices.create_answer(body['user'], body['answer'], 
+            AnswerServices.create(body['user'], body['answer'], 
                                         body['questionId'], current_app.db)
             
         except ValueError:
@@ -69,6 +69,6 @@ def list_answers_by_user(user: str) -> Tuple[Union[List[Answer], str], Optional[
           and a code 200 OK.
     """
     with current_app.app_context():
-        answers: List[Answer] = AnswerServices.list_all_by_question(current_app.db, user)
+        answers: List[Answer] = AnswerServices.list_all_by_user(current_app.db, user)
     return (answers, HTTPStatus.OK.value)
 
