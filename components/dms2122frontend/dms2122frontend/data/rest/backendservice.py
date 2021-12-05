@@ -40,7 +40,7 @@ class BackendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    def create_question(self, auth_service: AuthService, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
+    def create_question(self, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
         """ Requests a user creation.
 
         Args:
@@ -64,7 +64,7 @@ class BackendService():
                 'incorrect_answer_percentage': incorrect_question_percentage
             },
             headers={
-                'Authorization': f'Bearer {auth_service}',
+                'Authorization': f'Bearer User',
                 self.__apikey_header: self.__apikey_secret
             }
         )
