@@ -65,15 +65,11 @@ class QuestionServices():
         Returns:
             - List[Dict]: A list of dictionaries with the users' data.
         """
-        out: List[Dict] = []
+
         session: Session = schema.new_session()
-        questions: List[Question] = Questions.list_all(session)
-        for question in questions:
-            out.append({
-                'title': question.title
-            })
+        questions = Questions.list_all(session)
         schema.remove_session()
-        return out
+        return questions
 
     @staticmethod
     def create_question(question:str, description:str, option1:str, option2:str, true_answer:str,
