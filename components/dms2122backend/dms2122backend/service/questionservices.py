@@ -1,4 +1,4 @@
-""" UserServices class module.
+""" QuestionServices class module.
 """
 
 from typing import List, Dict, Optional
@@ -51,7 +51,7 @@ class QuestionServices():
             - None: If the question doesn't exists.
         """
         session: Session = schema.new_session()
-        question = Questions.get_question_by_id(session, questionId)
+        question = Questions.get_question_id(session, questionId)
         session.remove_session()
         return question
 
@@ -74,7 +74,7 @@ class QuestionServices():
     @staticmethod
     def create_question(question:str, description:str, option1:str, option2:str, true_answer:str,
                         correct_question_percentage:float, incorrect_question_percentage:float, 
-                        schema: Schema) -> Dict:
+                        schema: Schema) -> None:
         """Creates a question.
 
         Args:
