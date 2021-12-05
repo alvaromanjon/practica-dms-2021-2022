@@ -6,7 +6,7 @@ from typing import List, Optional
 from sqlalchemy.exc import IntegrityError  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy.orm.exc import NoResultFound  # type: ignore
-from dms2122backend.data.db.results import Question
+from dms2122backend.data.db.results import Question, question
 from dms2122backend.data.db.exc import QuestionExistsError
 
 
@@ -91,7 +91,7 @@ class Questions():
             query.one()
         except NoResultFound:
             return None
-        return Question
+        return question
     
     @staticmethod
     def get_question_by_id(session: Session, questionId: int) -> Optional[Question]:
@@ -110,4 +110,4 @@ class Questions():
             query.one()
         except NoResultFound:
             return None
-        return Question
+        return question
