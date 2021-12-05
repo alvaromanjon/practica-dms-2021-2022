@@ -33,7 +33,7 @@ class QuestionServices():
             - None: If the question doesn't exists.
         """
         session: Session = schema.new_session()
-        question = Questions.get_question(session, question, description, option1, option2, true_answer, 
+        question: Question = Questions.get_question(session, question, description, option1, option2, true_answer, 
                                         correct_question_percentage, incorrect_question_percentage)
         session.remove_session()
         return question
@@ -56,7 +56,7 @@ class QuestionServices():
         return question
 
     @staticmethod
-    def list_questions(schema: Schema) -> List[Dict]:
+    def list_questions(schema: Schema) -> List[Question]:
         """Lists the existing questions.
 
         Args:
