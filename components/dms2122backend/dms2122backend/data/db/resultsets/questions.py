@@ -91,7 +91,7 @@ class Questions():
             query.one()
         except NoResultFound:
             return None
-        return question
+        return Question
     
     @staticmethod
     def get_question_by_id(session: Session, questionId: int) -> Optional[Question]:
@@ -110,4 +110,4 @@ class Questions():
             query.one()
         except NoResultFound:
             return None
-        return question
+        return Question
