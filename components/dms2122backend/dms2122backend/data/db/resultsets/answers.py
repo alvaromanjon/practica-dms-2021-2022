@@ -2,7 +2,7 @@
 """
 
 from typing import Optional, List
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError  # type: ignore
 from sqlalchemy.orm import Session  # type: ignore
 from sqlalchemy.orm.exc import NoResultFound  # type: ignore
 from dms2122backend.data.db.exc import QuestionNotFoundError  # type: ignore
