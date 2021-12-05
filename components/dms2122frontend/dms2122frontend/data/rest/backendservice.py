@@ -4,6 +4,7 @@
 import requests
 from dms2122common.data import Role
 from dms2122common.data.rest import ResponseData
+from typing import Optional
 
 
 class BackendService():
