@@ -3,10 +3,10 @@
 
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
-from flask import current_app # type: ignore
+from flask import current_app
+from dms2122auth.service.roleservices import RoleServices # type: ignore
 from dms2122backend.data.db.exc import QuestionExistsError, QuestionNotFoundError
 from dms2122backend.service import QuestionServices
-from dms2122auth.service import RoleServices
 from dms2122backend.data.db.results import Question
 from dms2122common.data.role import Role
 
@@ -24,13 +24,13 @@ def get_question(body: Dict, token_info: Dict) -> Tuple[Union[Optional[Question]
     """
     with current_app.app_context():
         try:
-            question: Dict = QuestionServices.get_question(body['question'],
+            questionReturned = QuestionServices.get_question(body['question'],
             body['description'], body['option1'], body['option2'], body['true_answer'], 
             body['correct_question_percentage'], body['incorrect_question_percentage'], current_app.db)
             
         except ValueError:
             return ('A mandatory argument is missing', HTTPStatus.BAD_REQUEST.value)
-    return (question, HTTPStatus.OK.value)
+    return (questionReturned, HTTPStatus.OK.value)
 
 def get_question_id(questionId: int, token_info: Dict) -> Tuple[Union[Optional[Question], str], Optional[int]]:
     """Get a question using the id.
@@ -46,11 +46,11 @@ def get_question_id(questionId: int, token_info: Dict) -> Tuple[Union[Optional[Q
     """
     with current_app.app_context():
         try:
-            question: Dict = QuestionServices.get_question_id(questionId, current_app.db)
+            questionReturned = QuestionServices.get_question_id(questionId, current_app.db)
             
         except ValueError:
             return ('A mandatory argument is missing', HTTPStatus.BAD_REQUEST.value)
-    return (question, HTTPStatus.OK.value)
+    return (questionReturned, HTTPStatus.OK.value)
 
 def list_questions() -> Tuple[List[Dict], Optional[int]]:
     """Lists the existing questions.
