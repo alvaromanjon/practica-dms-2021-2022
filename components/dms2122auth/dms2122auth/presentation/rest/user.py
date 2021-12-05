@@ -3,7 +3,7 @@
 
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
-from flask import current_app
+from flask import current_app # type: ignore
 from dms2122auth.data.db.exc import UserExistsError
 from dms2122auth.service import UserServices, RoleServices
 from dms2122common.data.role import Role

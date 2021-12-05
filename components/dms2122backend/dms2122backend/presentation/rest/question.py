@@ -3,7 +3,7 @@
 
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
-from flask import current_app
+from flask import current_app # type: ignore
 from dms2122backend.data.db.exc import QuestionExistsError, QuestionNotFoundError
 from dms2122backend.service import QuestionServices
 from dms2122auth.service import RoleServices
