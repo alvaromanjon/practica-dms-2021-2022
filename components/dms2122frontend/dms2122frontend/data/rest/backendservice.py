@@ -40,7 +40,7 @@ class BackendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    def create_question(self, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
+    def create_question(self, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:str,incorrect_question_percentage:str) -> ResponseData:
         """ Requests a user creation.
 
         Args:
