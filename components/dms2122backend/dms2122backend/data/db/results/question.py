@@ -2,7 +2,7 @@
 """
 
 from typing import Dict
-from sqlalchemy import Table, MetaData, Column, String, relationship  # type: ignore
+from sqlalchemy import Table, MetaData, Column, String, Integer, relationship  # type: ignore
 from sqlalchemy.sql.sqltypes import Float  # type: ignore
 from dms2122backend.data.db.results.resultbase import ResultBase
 from dms2122backend.data.db.results.answer import Answer
@@ -49,7 +49,8 @@ class Question(ResultBase):
         return Table(
             'questions',
             metadata,
-            Column('question', String(32), primary_key=True),
+            Column('questionId', Integer, autoincrement= 'auto', primary_key=True),
+            Column('question', String(32), nullable=False),
             Column('description', String(256), nullable=True),
             Column('opt1', String(32), nullable=False),
             Column('opt2', String(32), nullable=False),
