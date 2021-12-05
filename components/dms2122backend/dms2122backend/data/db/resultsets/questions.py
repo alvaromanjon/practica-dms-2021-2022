@@ -2,11 +2,11 @@
 """
 
 import hashlib
-from typing import List, Optional
+from typing import Optional, List
 from sqlalchemy.exc import IntegrityError  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy.orm.exc import NoResultFound  # type: ignore
-from dms2122backend.data.db.results import Question, question
+from dms2122backend.data.db.results import Question
 from dms2122backend.data.db.exc import QuestionExistsError
 
 
@@ -88,26 +88,32 @@ class Questions():
                                                     option1=option1, option2=option2, true_answer=true_answer, 
                                                     correct_question_percentage=correct_question_percentage,
                                                     incorrect_question_percentage=incorrect_question_percentage)
-            query.one()
+            questionReturned: Question = query.one()
         except NoResultFound:
             return None
-        return question
+        return questionReturned
     
     @staticmethod
-    def get_question_by_id(session: Session, questionId: int) -> Optional[Question]:
+    def get_question_id(session: Session, questionId: int) -> Optional[Question]:
         """ Returns a question (if exists).
 
         Args:
             - session (Session): The session object.
-            - questionId (int): Question identifier.
-            
+            - question (str): A string with the question.
+            - description (str): A string with the question's description.
+            - option1 (str): A string with the first possible answer of the question.
+            - option2 (str): A string with the second possible answer of the question.
+            - true_answer (str): A string with the true answer of the question.
+            - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
+            - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
+
         Returns:
             - question: Question that matches the parameters given.
             - None: If the question doesn't exists.
         """
         try:
             query = session.query(Question).filter_by(questionId=questionId)
-            query.one()
+            questionReturned: Question = query.one()
         except NoResultFound:
             return None
-        return question
+        return questionReturned
