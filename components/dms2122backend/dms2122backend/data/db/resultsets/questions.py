@@ -99,13 +99,7 @@ class Questions():
 
         Args:
             - session (Session): The session object.
-            - question (str): A string with the question.
-            - description (str): A string with the question's description.
-            - option1 (str): A string with the first possible answer of the question.
-            - option2 (str): A string with the second possible answer of the question.
-            - true_answer (str): A string with the true answer of the question.
-            - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
-            - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
+            - questionId (int): Question identifier.
 
         Returns:
             - question: Question that matches the parameters given.

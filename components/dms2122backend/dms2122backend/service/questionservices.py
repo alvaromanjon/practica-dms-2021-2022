@@ -27,22 +27,37 @@ class QuestionServices():
             - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
             - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
             - schema (Schema): A database handler where the users are mapped into.
-            - cfg (AuthConfiguration): The application configuration.
 
         Returns:
-            - bool: `True` if the given user exists. `False` otherwise.
+            - question: Question that matches the parameters given.
+            - None: If the question doesn't exists.
         """
         session: Session = schema.new_session()
-        password_hash: str = Users.hash_password(
-            password, suffix=username, salt=salt)
-        session: Session = schema.new_session()
-        user_exists: bool = Users.user_exists(session, username, password_hash)
-        schema.remove_session()
-        return user_exists
+        question = Questions.get_question(session, question, description, option1, option2, true_answer, 
+                                        correct_question_percentage, incorrect_question_percentage)
+        session.remove_session()
+        return question
 
     @staticmethod
-    def list_users(schema: Schema) -> List[Dict]:
-        """Lists the existing users.
+    def get_question_id(questionId: int, schema: Schema) -> Optional[Question]:
+        """Determines whether a user with the given credentials exists.
+
+        Args:
+            - questionId (int): Question identifier.
+            - schema (Schema): A database handler where the users are mapped into.
+
+        Returns:
+            - question: Question that matches the parameters given.
+            - None: If the question doesn't exists.
+        """
+        session: Session = schema.new_session()
+        question = Questions.get_question_by_id(session, questionId)
+        session.remove_session()
+        return question
+
+    @staticmethod
+    def list_questions(schema: Schema) -> List[Dict]:
+        """Lists the existing questions.
 
         Args:
             - schema (Schema): A database handler where the users are mapped into.
@@ -52,23 +67,29 @@ class QuestionServices():
         """
         out: List[Dict] = []
         session: Session = schema.new_session()
-        users: List[User] = Users.list_all(session)
-        for user in users:
+        questions: List[Question] = Questions.list_all(session)
+        for question in questions:
             out.append({
-                'username': user.username
+                'title': question.title
             })
         schema.remove_session()
         return out
 
     @staticmethod
-    def create_user(username: str, password: str, schema: Schema, cfg: BackendConfiguration) -> Dict:
-        """Creates a user.
+    def create_question(question:str, description:str, option1:str, option2:str, true_answer:str,
+                        correct_question_percentage:float, incorrect_question_percentage:float, 
+                        schema: Schema) -> Dict:
+        """Creates a question.
 
         Args:
-            - username (str): The new user's name.
-            - password (str): The new user's password.
+            - question (str): A string with the question.
+            - description (str): A string with the question's description.
+            - option1 (str): A string with the first possible answer of the question.
+            - option2 (str): A string with the second possible answer of the question.
+            - true_answer (str): A string with the true answer of the question.
+            - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
+            - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
             - schema (Schema): A database handler where the users are mapped into.
-            - cfg (AuthConfiguration): The application configuration.
 
         Raises:
             - ValueError: If either the username or the password_hash is empty.
@@ -77,16 +98,11 @@ class QuestionServices():
         Returns:
             - Dict: A dictionary with the new user's data.
         """
-        salt: str = cfg.get_password_salt()
-        password_hash: str = Users.hash_password(
-            password, suffix=username, salt=salt)
         session: Session = schema.new_session()
-        out: Dict = {}
         try:
-            new_user: User = Users.create(session, username, password_hash)
-            out['username'] = new_user.username
+            new_question: Question = Questions.create(session, question, description, option1, option2, true_answer, 
+                                        correct_question_percentage, incorrect_question_percentage)
         except Exception as ex:
             raise ex
         finally:
             schema.remove_session()
-        return out
