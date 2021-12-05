@@ -33,10 +33,10 @@ class QuestionServices():
             - None: If the question doesn't exists.
         """
         session: Session = schema.new_session()
-        question: Question = Questions.get_question(session, question, description, option1, option2, true_answer, 
+        questionReturned = Questions.get_question(session, question, description, option1, option2, true_answer, 
                                         correct_question_percentage, incorrect_question_percentage)
         session.remove_session()
-        return question
+        return questionReturned
 
     @staticmethod
     def get_question_id(questionId: int, schema: Schema) -> Optional[Question]:
