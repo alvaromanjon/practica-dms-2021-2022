@@ -87,7 +87,7 @@ class TeacherEndpoints():
                                redirect_to=redirect_to)
 
     @staticmethod
-    def post_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
+    def post_teacher_add_question(auth_service: AuthService, backend_service: BackendService) -> Union[Response, Text]:
         """ Handles the POST requests to the questions creation endpoint.
 
         Args:
@@ -103,7 +103,7 @@ class TeacherEndpoints():
         '''if request.form['password'] != request.form['confirmpassword']:
             flash('Password confirmation mismatch', 'error')
             return redirect(url_for('get_teacher_add_question'))'''
-        created_question = BackendService.create_question(request.form['question'],
+        created_question = BackendService.create_question(backend_service,request.form['question'],
                                            request.form['description'],  
                                            request.form['opt1'],
                                            request.form['opt2'],
