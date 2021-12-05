@@ -196,4 +196,7 @@ En este apartado contamos con una arquitectura multicapa, de tal forma que divid
 - Capa de lógica de presentación: Esta capa de lo que se va a encargar es de la interacción entre el usuario y el software.
 - Capa de lógica de datos: Esta capa se encarga de las comunicaciones con otros sistemas que contienen datos con los que tenemos que trabajar, por ejemplo la base datos, que es donde almacenamos las preguntas, respuestas..
 - Capa de lógica de negocio: Esta última capa se encarga del manejo de la aplicación, como puede ser por ejemplo reponder una pregunta que el alumno tiene pendiente.
-- 
+  
+## patrones 
+- Uno de los patrones que utilizamos en esta parte de la practica, es el Singleton que nos indica que un clase solo debe tener una instancia y que haya un acceso global a la misma. Esto ocurre en todas las clases ya que solo se instacian una vez. De esta forma conseguiremos un acceso controlado.
+- El patron fachada que se encarga de dar una interfaz unificada de alto nivel para un conjunto de interfaces de un subsistema.
