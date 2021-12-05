@@ -103,7 +103,7 @@ class TeacherEndpoints():
         '''if request.form['password'] != request.form['confirmpassword']:
             flash('Password confirmation mismatch', 'error')
             return redirect(url_for('get_teacher_add_question'))'''
-        created_question = backendservice.create_question(auth_service,
+        created_question = BackendService.create_question(auth_service,
                                            request.form['question'],
                                            request.form['description'],  
                                            request.form['opt1'],
