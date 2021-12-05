@@ -38,8 +38,9 @@ class Answer(ResultBase):
             'answers',
             metadata,
             Column('user', String(32),
-                   ForeignKey('user.username'), primary_key=True),
+                   #ForeignKey('user.username'), 
+                   primary_key=True),
             Column('answer', String(32), nullable=False),
             Column('questionId', Integer,
-                    ForeignKey('questions.id'), primary_key=True)
+                    ForeignKey('questions.questionId'), primary_key=True)
         )

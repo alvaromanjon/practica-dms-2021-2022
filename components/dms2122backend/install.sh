@@ -11,4 +11,4 @@ popd
 rm -R "${TEMP_DIR}"
 
 #Create database of questions:
-dms2122backend-create-database-of-questions
+#dms2122backend-create-database-of-questions

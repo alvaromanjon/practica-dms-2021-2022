@@ -3,11 +3,11 @@
 from dms2122common.data import Role
 from dms2122backend.data.config import BackendConfiguration
 from dms2122backend.data.db import Schema
-from dms2122backend.service.answerservices import AnswerServices
 from dms2122backend.service.questionservices import QuestionServices
+from dms2122auth.service.roleservices import RoleServices
 
 cfg: BackendConfiguration = BackendConfiguration()
 cfg.load_from_file(cfg.default_config_file())
 db: Schema = Schema(cfg)
-QuestionServices.create_question('¿Cuál es la el valor de la gravedad en el planeta Tierra?', 'Hay que tener en cuenta que cuanta mayor sea la cercanía con el Sol, el valor de la gravedad será superior', '77,81 m/s²', '9,81 m/s²', '9,81 m/s²', '10', '5', db)
+QuestionServices.create_question('A', 'BC', '77,81 m/s', '9,81 m/s', '9,81 m/s', '10.0', '5.0', db)
 RoleServices.grant_role('admin', Role.Admin, db)

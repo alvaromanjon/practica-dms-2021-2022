@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
 from dms2122backend.data.config import BackendConfiguration
 from dms2122backend.data.db.results import Question
+from dms2122backend.data.db.results.answer import Answer
 
 
 # Required for SQLite to enforce FK integrity when supported
@@ -48,6 +49,7 @@ class Schema():
         self.__session_maker = scoped_session(sessionmaker(bind=self.__create_engine))
 
         Question.map(self.__declarative_base.metadata)
+        Answer.map(self.__declarative_base.metadata)
         self.__declarative_base.metadata.create_all(self.__create_engine)
 
     def new_session(self) -> Session:
