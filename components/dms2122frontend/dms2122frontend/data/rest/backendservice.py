@@ -1,6 +1,7 @@
 """ BackendService class module.
 """
 
+from typing import Optional
 import requests
 from dms2122common.data import Role
 from dms2122common.data.rest import ResponseData
@@ -37,4 +38,37 @@ class BackendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    # TODO: Implement
+    def create_question(self, token: Optional[str], question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:float,incorrect_question_percentage:float) -> ResponseData:
+        """ Requests a user creation.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The new user's name.
+            - password (str): The new user's password.
+
+        Returns:
+            - ResponseData: If successful, the contents hold the new user's data.
+        """
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.post(
+            self.__base_url() + '/question/add',
+            json={
+                'question': question,
+                'description': description,
+                'opt1': option1,
+                'opt2': option2,
+                'correct_answer': true_answer,
+                'correct_answer_percentage': correct_question_percentage,
+                'incorrect_answer_percentage': incorrect_question_percentage
+            },
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            }
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+        return response_data

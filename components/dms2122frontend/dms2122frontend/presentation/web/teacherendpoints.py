@@ -5,7 +5,9 @@ from typing import Text, Union
 from flask import redirect, url_for, session, render_template, request, flash
 from werkzeug.wrappers import Response
 from dms2122common.data import Role
+from dms2122frontend.data.rest import backendservice
 from dms2122frontend.data.rest.authservice import AuthService
+from dms2122frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
 from .webuser import WebUser
 
@@ -101,14 +103,17 @@ class TeacherEndpoints():
         '''if request.form['password'] != request.form['confirmpassword']:
             flash('Password confirmation mismatch', 'error')
             return redirect(url_for('get_teacher_add_question'))'''
-        '''created_question = WebUser.create_question(auth_service,
-                                           request.form['question'], 
+        created_question = backendservice.create_question(auth_service,
+                                           request.form['question'],
+                                           request.form['description'],  
                                            request.form['opt1'],
                                            request.form['opt2'],
-                                           request.form['true_answer']
+                                           request.form['true_answer'],
+                                           request.form['correct_answer_percentage'],
+                                           request.form['incorrect_answer_percentage']
                                            )
         if not created_question:
-            return redirect(url_for('get_teacher_add_question'))'''
+            return redirect(url_for('get_teacher_add_question'))
         redirect_to = request.form['redirect_to']
         if not redirect_to:
             redirect_to = url_for('get_home')
@@ -137,3 +142,11 @@ class TeacherEndpoints():
         redirect_to = request.args.get('redirect_to', default='/teacher/questions')
         return render_template('/teacher/questions/preview.html', name=name, roles=session['roles'],
                                 redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)
+
+    @staticmethod
+    def post_teacher_preview_question(auth_service: AuthService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        
