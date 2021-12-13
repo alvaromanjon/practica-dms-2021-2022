@@ -149,15 +149,21 @@ paths:
     get:
       summary: Show a preview for a selected question.
       operationId: dms2122backend.presentation.rest.question.preview_question
+      requestBody:
+        description: Questions preview
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/QuestionWithAnswerFullModel'
       responses:
         '200':
-          description: The given user has the given role.
+          description: The given question has the given answer
           content:
             'text/plain':
               schema:
                 type: string
         '404':
-          description: The given user does not have the given role, or either the user or the role does not exist.
+          description: The given question does not have the given answer, or either the question or the answer does not exist.
           content:
             'text/plain':
               schema:
@@ -197,7 +203,7 @@ paths:
               schema:
                 type: string
         '409':
-          description: There is a conflict with some of the user's unique data.
+          description: There is a conflict with some of the questions's unique data.
           content:
             'text/plain':
               schema:
@@ -212,23 +218,33 @@ components:
     QuestionFullModel:
       type: object
       properties:
-        username:
+        question:
           type: string
       required:
         - question
-    UserFullPasswordModel:
-      allOf:
-        - $ref: '#/components/schemas/QuestionFullModel'
-        - type: object
-          properties:
-            password:
-              type: string
-          required:
-            - password
+    AnswerFullModel:
+      type: object
+      properties:
+        answer:
+          type: string
+      required:
+        - answer
+    QuestionWithAnswerFullModel:
+      type: array
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+      required:
+        - question
+        - answer
+      items:
+        $ref: '#/components/schemas'
     QuestionsFullListModel:
       type: array
       items:
-        $ref: '#/components/schemas/QuestionFullModel'
+        $ref: '#/components/schemas/QuestionWithAnswerFullModel'
   securitySchemes:
     user_credentials:
       type: http
