@@ -36,7 +36,7 @@ paths:
   /teacher/questions:
     get:
       summary: Gets a listing of questions.
-      operationId: dms2122backend.presentation.rest.question.list_questions
+      operationId: dms2122backend.presentation.rest.question.teacher_list_questions
       responses:
         '200':
           description: A list of questions.
@@ -52,7 +52,7 @@ paths:
   /student/questions:
     get:
       summary: Gets a listing of questions.
-      operationId: dms2122backend.presentation.rest.question.list_questions
+      operationId: dms2122backend.presentation.rest.question.student_list_questions
       responses:
         '200':
           description: A list of questions.
@@ -231,16 +231,16 @@ components:
         - answer
     QuestionWithAnswerFullModel:
       type: array
-      properties:
-        question:
-          type: string
-        answer:
-          type: string
-      required:
-        - question
-        - answer
       items:
-        $ref: '#/components/schemas'
+        type: array
+        properties:
+          question:
+            type: string
+          answer:
+            type: string
+        required:
+          - question
+          - answer
     QuestionsFullListModel:
       type: array
       items:

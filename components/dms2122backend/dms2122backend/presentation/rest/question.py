@@ -63,6 +63,13 @@ def list_questions() -> Tuple[List[Dict], Optional[int]]:
         questions: List[Dict] = QuestionServices.list_questions(current_app.db)
     return (questions, HTTPStatus.OK.value)
 
+def teacher_list_questions()-> Tuple[List[Dict], Optional[int]]:
+    return list_questions()
+
+
+def student_list_questions()-> Tuple[List[Dict], Optional[int]]:
+    return list_questions()
+
 def create_question(body: Dict, token_info: Dict) -> Tuple[Union[Dict, str], Optional[int]]:
     """Creates a question if the user has the teacher role.
 
