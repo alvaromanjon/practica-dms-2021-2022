@@ -4,7 +4,7 @@
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
 from flask import current_app # type: ignore
-#from dms2122auth.service.roleservices import RoleServices # type: ignore
+'''from dms2122auth.service.roleservices import RoleServices # type: ignore'''
 from dms2122backend.data.db.exc import QuestionNotFoundError
 from dms2122backend.service import AnswerServices
 from dms2122backend.data.db.results import Answer
@@ -24,11 +24,11 @@ def create_answer(body: Dict, token_info: Dict) -> Tuple[Optional[str], Optional
             - 404 if the question doesn't exist.
     """
     with current_app.app_context():
-        if not RoleServices.has_role(token_info['user_token']['user'], Role.Student, current_app.db):
+        '''if not RoleServices.has_role(token_info['user_token']['user'], Role.Student, current_app.db):
             return (
                 'Current user has not enough privileges to answer a question',
                 HTTPStatus.FORBIDDEN.value
-            )
+            )'''
         try:
             AnswerServices.create(body['user'], body['answer'], 
                                         body['questionId'], current_app.db)
