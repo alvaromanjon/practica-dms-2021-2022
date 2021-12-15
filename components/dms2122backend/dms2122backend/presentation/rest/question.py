@@ -3,10 +3,9 @@
 
 from typing import Tuple, Union, Optional, List, Dict
 from http import HTTPStatus
-from flask import current_app # type: ignore
-from dms2122auth.service.roleservices import RoleServices # type: ignore
+from flask import current_app
 from dms2122backend.data.db.exc import QuestionExistsError
-from dms2122backend.service import QuestionServices
+from dms2122backend.service import QuestionServices 
 from dms2122backend.data.db.results import Question
 from dms2122common.data.role import Role
 
@@ -63,13 +62,6 @@ def list_questions() -> Tuple[List[Dict], Optional[int]]:
         questions: List[Dict] = QuestionServices.list_questions(current_app.db)
     return (questions, HTTPStatus.OK.value)
 
-def teacher_list_questions()-> Tuple[List[Dict], Optional[int]]:
-    return list_questions()
-
-
-def student_list_questions()-> Tuple[List[Dict], Optional[int]]:
-    return list_questions()
-
 def create_question(body: Dict, token_info: Dict) -> Tuple[Union[Dict, str], Optional[int]]:
     """Creates a question if the user has the teacher role.
 
@@ -85,11 +77,6 @@ def create_question(body: Dict, token_info: Dict) -> Tuple[Union[Dict, str], Opt
             - 409 CONFLICT if an existing user already has all or part of the unique user's data.
     """
     with current_app.app_context():
-        if not RoleServices.has_role(token_info['user_token']['user'], Role.Teacher, current_app.db):
-            return (
-                'Current user has not enough privileges to create a user',
-                HTTPStatus.FORBIDDEN.value
-            )
         try:
             question: Dict = QuestionServices.create_question(body['question'],
             body['description'], body['option1'], body['option2'], body['true_answer'], 

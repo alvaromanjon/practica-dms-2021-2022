@@ -33,10 +33,10 @@ paths:
                 type: string
       tags:
         - server
-  /teacher/questions:
+  /questions:
     get:
       summary: Gets a listing of questions.
-      operationId: dms2122backend.presentation.rest.question.teacher_list_questions
+      operationId: dms2122backend.presentation.rest.question.list_questions
       responses:
         '200':
           description: A list of questions.
@@ -47,24 +47,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
-  /student/questions:
-    get:
-      summary: Gets a listing of questions.
-      operationId: dms2122backend.presentation.rest.question.student_list_questions
-      responses:
-        '200':
-          description: A list of questions.
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/QuestionsFullListModel'
-      tags:
-        - questions
-      security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /teacher/questions/add:
     post:
       summary: Creates a new question.
@@ -103,8 +86,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /teacher/questions/edit:
     post:
       summary: Edits a new question.
