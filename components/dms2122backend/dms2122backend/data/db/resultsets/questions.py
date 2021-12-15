@@ -5,7 +5,7 @@ import hashlib
 from typing import Optional, List
 from sqlalchemy.exc import IntegrityError  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
-from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm.exc import NoResultFound # type: ignore
 from dms2122backend.data.db.exc.questionnotfounderror import QuestionNotFoundError  # type: ignore
 from dms2122backend.data.db.results import Question
 from dms2122backend.data.db.exc import QuestionExistsError
