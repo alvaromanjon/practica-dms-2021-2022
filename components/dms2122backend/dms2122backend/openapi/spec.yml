@@ -126,10 +126,10 @@ paths:
         - questions
       security:
         - api_key: []
-  /teacher/questions/preview:
+  /questions/preview/{id}:
     get:
       summary: Show a preview for a selected question.
-      operationId: dms2122backend.presentation.rest.question.preview_question
+      operationId: dms2122backend.presentation.rest.question.get_question_id
       requestBody:
         description: Questions preview
         content:
