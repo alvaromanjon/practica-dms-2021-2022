@@ -111,7 +111,7 @@ class QuestionServices():
         return out
 
     @staticmethod
-    def edit_question(question:str, description:str, option1:str, option2:str, true_answer:str,
+    def edit_question(id: int, question:str, description:str, option1:str, option2:str, true_answer:str,
                         correct_question_percentage:float, incorrect_question_percentage:float, 
                         schema: Schema) -> Dict:
         """Edits a question.
@@ -136,7 +136,7 @@ class QuestionServices():
         session: Session = schema.new_session()
         out: Dict = {}
         try:
-            new_question: Question = Questions.edit(session, question, description, option1, option2, true_answer, 
+            new_question: Question = Questions.edit(session, id, question, description, option1, option2, true_answer, 
                                         correct_question_percentage, incorrect_question_percentage)
             out['questionName'] = new_question.question
         except Exception as ex:

@@ -104,7 +104,7 @@ def edit_question(body: Dict, token_info: Dict) -> Tuple[Union[Dict, str], Optio
     """
     with current_app.app_context():
         try:
-            question: Dict = QuestionServices.edit_question(body['question'],
+            question: Dict = QuestionServices.edit_question(body['id'], body['question'],
             body['description'], body['option1'], body['option2'], body['true_answer'], 
             body['correct_question_percentage'], body['incorrect_question_percentage'], current_app.db)
             
