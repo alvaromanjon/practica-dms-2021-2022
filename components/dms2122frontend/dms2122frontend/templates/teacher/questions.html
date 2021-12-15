@@ -27,11 +27,11 @@
                         <td class="alignleft">{{ pregunta['respuesta_correcta'] }}</td>
                         <td class="alignleft">{{ pregunta['porcentaje_correcta'] }}</td>
                         <td class="alignleft">{{ pregunta['porcentaje_incorrecta'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/teacher/questions/preview?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/teacher/questions', 'Previsualizar') }}{{ button('bluebg', '/teacher/questions/edit?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/teacher/questions', 'Editar') }}</td>
+                        <td class="alignright">{{ button('bluebg', '/questions/preview/?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/questions', 'Previsualizar') }}{{ button('bluebg', '/questions/edit?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/questions', 'Editar') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <p class="alignright">{{ button('bluebg', '/teacher/questions/add', 'Añadir pregunta') }}</p>
+        <p class="alignright">{{ button('bluebg', '/questions/add', 'Añadir pregunta') }}</p>
     {% endblock %}
 {% endblock %}

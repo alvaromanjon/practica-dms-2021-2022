@@ -3,7 +3,7 @@
 {% block title %}{% block subtitle %}{% endblock %}Añadir pregunta{% endblock %}
 {% block contentsubheading %}Añadir una pregunta{% endblock %}
 {% block maincontent %}
-    <form action="/teacher/questions/add" method="post">
+    <form action="/questions/add" method="post">
         <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
         <dl>
             <dt>Pregunta</dt>

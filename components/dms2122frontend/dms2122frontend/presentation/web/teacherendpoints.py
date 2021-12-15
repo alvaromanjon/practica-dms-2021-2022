@@ -82,7 +82,7 @@ class TeacherEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
-        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        redirect_to = request.args.get('redirect_to', default='/questions')
         return render_template('/teacher/questions/add.html', name=name, roles=session['roles'],
                                redirect_to=redirect_to)
 
@@ -126,7 +126,7 @@ class TeacherEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
         nombre_pregunta: str = str(request.args.get('nombre_pregunta'))
-        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        redirect_to = request.args.get('redirect_to', default='/questions')
         return render_template('/teacher/questions/edit.html', name=name, roles=session['roles'],
                                 redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)
 
@@ -138,7 +138,7 @@ class TeacherEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
         nombre_pregunta: str = str(request.args.get('nombre_pregunta'))
-        redirect_to = request.args.get('redirect_to', default='/teacher/questions')
+        redirect_to = request.args.get('redirect_to', default='/questions')
         return render_template('/teacher/questions/preview.html', name=name, roles=session['roles'],
                                 redirect_to=redirect_to, nombre_pregunta=nombre_pregunta)
 

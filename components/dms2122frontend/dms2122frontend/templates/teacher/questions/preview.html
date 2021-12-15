@@ -3,7 +3,7 @@
 {% block title %}{% block subtitle %}{% endblock %}Previsualización de pregunta{% endblock %}
 {% block contentsubheading %}Previsualizar {{ nombre_pregunta }}{% endblock %}
 {% block maincontent %}
-<form action="/teacher/questions/preview" method="post">
+<form action="/questions/preview/{id}" method="post">
     <input type="hidden" name="redirect_to" value="{{ redirect_to }}" />
     <dl>
         <h2>Pregunta</h2>
