@@ -5,7 +5,8 @@ import hashlib
 from typing import Optional, List
 from sqlalchemy.exc import IntegrityError  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
-from sqlalchemy.orm.exc import NoResultFound  # type: ignore
+from sqlalchemy.orm.exc import NoResultFound
+from dms2122backend.data.db.exc.questionnotfounderror import QuestionNotFoundError  # type: ignore
 from dms2122backend.data.db.results import Question
 from dms2122backend.data.db.exc import QuestionExistsError
 
@@ -16,7 +17,7 @@ class Questions():
     @staticmethod
     def create(session: Session, question:str, description:str, option1:str, option2:str, true_answer:str,
                 correct_question_percentage:float, incorrect_question_percentage:float) -> Question:
-        """ Creates a new user record.
+        """ Creates a new question record.
 
         Note:
             Any existing transaction will be committed.
@@ -111,3 +112,43 @@ class Questions():
         except NoResultFound:
             return None
         return questionReturned
+    
+    @staticmethod
+    def edit(session: Session, id: int, question:str, description:str, option1:str, option2:str, true_answer:str,
+                correct_question_percentage:float, incorrect_question_percentage:float) -> Question:
+        """ Edit an existing question record.
+
+        Note:
+            Any existing transaction will be committed.
+
+        Args:
+            - session (Session): The session object.
+            - question (str): The question string.
+            - description (str): The description string.
+            - option1 (str): The first option string.
+            - option2 (str): The second option string.
+            - true_answer (str): The true answer string.
+            - correct_question_percentage (float): The correct question percentage value.
+            - incorrect_question_percentage (float): The incorrect question percentage value.
+
+        Raises:
+            - ValueError: If any of the fields are not found.
+            - QuestionExistsError: If a question with the same name exists.
+
+        Returns:
+            - User: The created `User` result.
+        """
+        question_to_edit = Questions.get_question_id(session, id)
+
+        if question_to_edit is not None:
+            question_to_edit.question = question
+            question_to_edit.desciption = description
+            question_to_edit.option1 = option1
+            question_to_edit.option2 = option2
+            question_to_edit.true_answer = true_answer
+            question_to_edit.correct_question_percentage = correct_question_percentage
+            question_to_edit.incorrect_question_percentage = incorrect_question_percentage
+
+            session.commit()
+            return question_to_edit
+        raise QuestionNotFoundError()

@@ -184,7 +184,9 @@ En nuestro caso el frontend va a contar con dos capas, a esta arquitectura se la
 - Capa de presentación: Esta se encarga de la interacción entre el cliente y el software.
 - Capa de origen de datos: Se encarga de la comunicación con otros sistemas que contienen datos con los que trabaja nuestra aplicación.
   
-Hemos aplicado en esta práctica los patrones single responsibility, que indíca que un módulo debería tener una sola razón para cambiar, y el interface segregation, nos indíca que ningún cliente debe tener la obligación de utilizar métodos que no necesita. En nuestro caso lo hemos aplicado a la hora de declarar los endpoints, ya que podría declararse todo dentro del archivo `dms2122frontend`, pero lo hemos hecho en distintos archivos endpoint y cada uno se encarga de los endpoints que corresponden con cada rol.
+Hemos aplicado en esta práctica los patrones: single responsibility, que indíca que un módulo debería tener una sola razón para cambiar, y el interface segregation, nos indíca que ningún cliente debe tener la obligación de utilizar métodos que no necesita. En nuestro caso lo hemos aplicado a la hora de declarar los endpoints, ya que podría declararse todo dentro del archivo `dms2122frontend`, pero lo hemos hecho en distintos archivos endpoint y cada uno se encarga de los endpoints que corresponden con cada rol.
+
+En cuanto a los fundamentos de diseño que hemos utilizado son los siguientes:
 
 # Arquitectura y diseño del backend 
 

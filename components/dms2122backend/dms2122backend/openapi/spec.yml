@@ -48,7 +48,7 @@ paths:
         - questions
       security:
         - api_key: []
-  /teacher/questions/add:
+  /questions/add:
     post:
       summary: Creates a new question.
       operationId: dms2122backend.presentation.rest.question.create_question
@@ -87,7 +87,7 @@ paths:
         - questions
       security:
         - api_key: []
-  /teacher/questions/edit:
+  /questions/edit:
     post:
       summary: Edits a new question.
       operationId: dms2122backend.presentation.rest.question.edit_question
@@ -125,8 +125,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /teacher/questions/preview:
     get:
       summary: Show a preview for a selected question.
@@ -153,8 +152,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
+      - api_key: []
   /student/questions/answer:
     post:
       summary: Answer the list of questions.
@@ -193,8 +191,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
 components:
   schemas:
     QuestionFullModel:

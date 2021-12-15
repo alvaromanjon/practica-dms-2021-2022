@@ -109,3 +109,38 @@ class QuestionServices():
         finally:
             schema.remove_session()
         return out
+
+    @staticmethod
+    def edit_question(question:str, description:str, option1:str, option2:str, true_answer:str,
+                        correct_question_percentage:float, incorrect_question_percentage:float, 
+                        schema: Schema) -> Dict:
+        """Edits a question.
+
+        Args:
+            - question (str): A string with the question.
+            - description (str): A string with the question's description.
+            - option1 (str): A string with the first possible answer of the question.
+            - option2 (str): A string with the second possible answer of the question.
+            - true_answer (str): A string with the true answer of the question.
+            - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
+            - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
+            - schema (Schema): A database handler where the users are mapped into.
+
+        Raises:
+            - ValueError: If either the username or the password_hash is empty.
+            - UserExistsError: If a user with the same username already exists.
+
+        Returns:
+            - Dict: A dictionary with the new user's data.
+        """
+        session: Session = schema.new_session()
+        out: Dict = {}
+        try:
+            new_question: Question = Questions.edit(session, question, description, option1, option2, true_answer, 
+                                        correct_question_percentage, incorrect_question_percentage)
+            out['questionName'] = new_question.question
+        except Exception as ex:
+            raise ex
+        finally:
+            schema.remove_session()
+        return out
