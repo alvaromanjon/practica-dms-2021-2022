@@ -156,7 +156,7 @@ paths:
   /student/questions/answer:
     post:
       summary: Answer the list of questions.
-      operationId: dms2122backend.presentation.rest.question.answer_questions
+      operationId: dms2122backend.presentation.rest.answer.create_answer
       requestBody:
         description: New questions's data.
         content:
