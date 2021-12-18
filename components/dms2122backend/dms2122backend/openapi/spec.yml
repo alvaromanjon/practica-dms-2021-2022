@@ -87,10 +87,16 @@ paths:
         - questions
       security:
         - api_key: []
-  /questions/edit:
-    post:
-      summary: Edits a new question.
+  /questions/edit/{id}:
+    put:
+      summary: Edits an existing question.
       operationId: dms2122backend.presentation.rest.question.edit_question
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
         description: Edited questions's data.
         content:
@@ -125,11 +131,18 @@ paths:
       tags:
         - questions
       security:
-        - api_key: []
+        - user_token: []
+          api_key: []
   /questions/preview/{id}:
     get:
       summary: Show a preview for a selected question.
       operationId: dms2122backend.presentation.rest.question.get_question_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
         description: Questions preview
         content:
@@ -152,7 +165,8 @@ paths:
       tags:
         - questions
       security:
-      - api_key: []
+      - user_token: []
+        api_key: []
   /student/questions/answer:
     post:
       summary: Answer the list of questions.
