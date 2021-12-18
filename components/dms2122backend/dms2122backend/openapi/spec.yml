@@ -213,8 +213,61 @@ components:
       properties:
         question:
           type: string
+        description:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        true_answer:
+          type: string
+        correct_question_percentage:
+          type: float
+        incorrect_question_percentage:
+          type: float
       required:
         - question
+        - description
+        - option1
+        - option2
+        - true_answer
+        - correct_question_percentage
+        - incorrect_question_percentage
+    
+    QuestionFullIdModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        question:
+          type: string
+        description:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        true_answer:
+          type: string
+        correct_question_percentage:
+          type: float
+        incorrect_question_percentage:
+          type: float
+      required:
+        - id
+        - question
+        - description
+        - option1
+        - option2
+        - true_answer
+        - correct_question_percentage
+        - incorrect_question_percentage
+    
+    QuestionsFullListModel:
+      type: array
+      items:
+        $ref: '#/components/schemas/QuestionFullIdModel'
+    
     AnswerFullModel:
       type: object
       properties:
@@ -234,10 +287,7 @@ components:
         required:
           - question
           - answer
-    QuestionsFullListModel:
-      type: array
-      items:
-        $ref: '#/components/schemas/QuestionWithAnswerFullModel'
+
   securitySchemes:
     user_credentials:
       type: http
