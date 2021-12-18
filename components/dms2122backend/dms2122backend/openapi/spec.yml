@@ -87,7 +87,7 @@ paths:
         - questions
       security:
         - api_key: []
-  /questions/edit/{id}:
+  /questions/{id}/edit:
     put:
       summary: Edits an existing question.
       operationId: dms2122backend.presentation.rest.question.edit_question
@@ -105,7 +105,7 @@ paths:
               $ref: '#/components/schemas/QuestionFullIdModel'
       responses:
         '200':
-          description: Data of the newly created question.
+          description: Data of the edited question.
           content:
             'application/json':
               schema:
@@ -122,8 +122,8 @@ paths:
             'text/plain':
               schema:
                 type: string
-        '409':
-          description: There is a conflict with some of the user's unique data.
+        '404':
+          description: The question does not exist.
           content:
             'text/plain':
               schema:
@@ -133,9 +133,9 @@ paths:
       security:
         - user_token: []
           api_key: []
-  /questions/preview/{id}:
+  /questions/{id}/preview:
     get:
-      summary: Show a preview for a selected question.
+      summary: Show a preview for the selected question.
       operationId: dms2122backend.presentation.rest.question.get_question_id
       parameters:
         - name: id
@@ -143,21 +143,21 @@ paths:
           required: true
           schema:
             type: integer
-      requestBody:
-        description: Questions preview
-        content:
-          'application/json':
-            schema:
-              $ref: '#/components/schemas/QuestionFullIdModel'
       responses:
         '200':
-          description: The given question has the given answer
+          description: The given question exists and it's previewed.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/QuestionFullIdModel'
+        '400':
+          description: Errors in the request.
           content:
             'text/plain':
               schema:
                 type: string
         '404':
-          description: The given question does not have the given answer, or either the question or the answer does not exist.
+          description: The given question does not exist.
           content:
             'text/plain':
               schema:
@@ -167,25 +167,34 @@ paths:
       security:
       - user_token: []
         api_key: []
-
-# Cambiar
-  /student/questions/answer:
+  /questions/{id}/answer/{username}:
     post:
-      summary: Answer the list of questions.
+      summary: Answers a question.
       operationId: dms2122backend.presentation.rest.answer.create_answer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
-        description: New questions's data.
+        description: Answer's data.
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/QuestionFullModel'
+              $ref: '#/components/schemas/AnswerFullModel'
       responses:
         '200':
-          description: Data of the newly created question.
+          description: The question has been answered.
           content:
-            'application/json':
+            'text/plain':
               schema:
-                $ref: '#/components/schemas/QuestionFullModel'
+                type: string
         '400':
           description: Errors in the request.
           content:
@@ -198,16 +207,88 @@ paths:
             'text/plain':
               schema:
                 type: string
-        '409':
-          description: There is a conflict with some of the questions's unique data.
+        '404':
+          description: The question does not exist.
           content:
             'text/plain':
               schema:
                 type: string
       tags:
         - questions
+        - answers
       security:
-        - api_key: []
+        - user_token: []
+          api_key: []
+  /questions/{id}/answers:
+    get:
+      summary: Gets all the answers to a question.
+      operationId: dms2122backend.presentation.rest.answer.list_answers_by_question
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: All the answers to a question.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/AnswersFullListModel'
+        '400':
+          description: Errors in the request.
+          content:
+            'text/plain':
+              schema:
+                type: string
+        '403':
+          description: The requesting user has no permission to do this operation.
+          content:
+            'text/plain':
+              schema:
+                type: string
+      tags:
+        - questions
+        - answers
+      security:
+        - user_token: []
+          api_key: []
+  /questions/{username}/answers:
+    get:
+      summary: Gets all the answers from an user.
+      operationId: dms2122backend.presentation.rest.answer.list_answers_by_user
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: All the answers from an user.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/AnswersFullListModel'
+        '400':
+          description: Errors in the request.
+          content:
+            'text/plain':
+              schema:
+                type: string
+        '403':
+          description: The requesting user has no permission to do this operation.
+          content:
+            'text/plain':
+              schema:
+                type: string
+      tags:
+        - questions
+        - answers
+      security:
+        - user_token: []
+          api_key: []
 components:
   schemas:
     QuestionFullModel:
