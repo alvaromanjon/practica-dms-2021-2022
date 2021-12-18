@@ -64,7 +64,7 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/QuestionFullModel'
+                $ref: '#/components/schemas/QuestionFullIdModel'
         '400':
           description: Errors in the request.
           content:
@@ -102,14 +102,14 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/QuestionFullModel'
+              $ref: '#/components/schemas/QuestionFullIdModel'
       responses:
         '200':
           description: Data of the newly created question.
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/QuestionFullModel'
+                $ref: '#/components/schemas/QuestionFullIdModel'
         '400':
           description: Errors in the request.
           content:
@@ -148,7 +148,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/QuestionWithAnswerFullModel'
+              $ref: '#/components/schemas/QuestionFullIdModel'
       responses:
         '200':
           description: The given question has the given answer
@@ -167,6 +167,8 @@ paths:
       security:
       - user_token: []
         api_key: []
+
+# Cambiar
   /student/questions/answer:
     post:
       summary: Answer the list of questions.
@@ -271,28 +273,23 @@ components:
     AnswerFullModel:
       type: object
       properties:
+        user:
+          type: string
         answer:
           type: string
+        questionId:
+          type: integer
       required:
+        - user
         - answer
-    QuestionWithAnswerFullModel:
+        - questionId
+
+    AnswersFullListModel:
       type: array
       items:
-        type: array
-        properties:
-          question:
-            type: string
-          answer:
-            type: string
-        required:
-          - question
-          - answer
+        $ref: '#/components/schemas/AnswerFullModel'
 
   securitySchemes:
-    user_credentials:
-      type: http
-      scheme: basic
-      x-basicInfoFunc: dms2122backend.presentation.rest.security.verify_credentials
     user_token:
       type: http
       scheme: bearer
