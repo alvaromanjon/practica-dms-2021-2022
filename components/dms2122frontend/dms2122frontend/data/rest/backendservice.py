@@ -74,3 +74,30 @@ class BackendService():
         else:
             response_data.add_message(response.content.decode('ascii'))
         return response_data
+
+
+    def list_questions(self, token: Optional[str]) -> ResponseData:
+        """ Requests a list of registered users.
+
+        Args:
+            token (Optional[str]): The user session token.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a list of user data dictionaries.
+              Otherwise, the contents will be an empty list.
+        """
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.get(
+            self.__base_url() + '/questions',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            }
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data

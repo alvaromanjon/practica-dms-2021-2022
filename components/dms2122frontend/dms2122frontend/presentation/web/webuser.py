@@ -5,6 +5,7 @@ from typing import Dict, List, Optional
 from flask import session
 from dms2122common.data.rest import ResponseData
 from dms2122frontend.data.rest.authservice import AuthService
+from dms2122frontend.data.rest.backendservice import BackendService
 from .webutils import WebUtils
 
 
@@ -80,3 +81,20 @@ class WebUser():
             session.get('token'), username, roles)
         WebUtils.flash_response_messages(response)
         return response.is_successful()
+
+
+    @staticmethod
+    def list_questions(backend_service: BackendService) -> List:
+        """ Gets the list of users from the authentication service.
+
+        Args:
+            - auth_service (AuthService): The authentication service.
+
+        Returns:
+            - List: A list of user data dictionaries (the list may be empty)
+        """
+        response: ResponseData = backend_service.list_questions(session.get('token'))
+        WebUtils.flash_response_messages(response)
+        if response.get_content() is not None and isinstance(response.get_content(), list):
+            return list(response.get_content())
+        return []
