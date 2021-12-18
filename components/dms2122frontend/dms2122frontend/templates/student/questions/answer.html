@@ -9,10 +9,10 @@
         <h2>Pregunta</h2>
             <p>{{ nombre_pregunta }}</p>
         <h2>Enunciado</h2>
-            <p>Enunciado de la pregunta</p>
+            <p>{{ enunciado }}</p>
         <h2>¿Cuál es la respuesta correcta?</h2>
-            <input type="radio" name="true_answer" placeholder="Opción 1" />Opción 1<br />
-            <input type="radio" name="true_answer" placeholder="Opción 2" />Opción 2<br />
+            <input type="radio" name="true_answer" placeholder="Opción 1" />{{ opcion1 }}<br />
+            <input type="radio" name="true_answer" placeholder="Opción 2" />{{ opcion2 }}<br />
     </dl>
     <p class="alignright">{{ submit_button('bluebg', 'Contestar') }}{{ button('redbg', redirect_to, 'Cancelar') }}</p>
 </form>
