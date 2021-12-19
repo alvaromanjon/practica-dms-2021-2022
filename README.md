@@ -291,10 +291,17 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 Nombre  | Tipo         |   Primary key    | Nullabe
 --------- | ----------  | ------- | --------
 questionId        | Integer |TRUE  | FALSE
-question | String(64) |    FALSE    | FALSE
-description   | String(64) |    FALSE    | FALSE
-option1 | String(64) |  FALSE     | FALSE
-option2 | String(64) | FALSE     |  FALSE
-true_answer   | String(64) | FALSE    | FALSE
-ccorrect_question_percentage   | Float(2,2) | FALSE       | FALSE
-incorrect_question_percentage       | Float(2,2) |  FALSE   | FALSE
+question | String |    FALSE    | FALSE
+description   | String |    FALSE    | FALSE
+option1 | String |  FALSE     | FALSE
+option2 | String | FALSE     |  FALSE
+true_answer   | String | FALSE    | FALSE
+correct_question_percentage   | Float | FALSE       | FALSE
+incorrect_question_percentage       | Float |  FALSE   | FALSE
+
+## Anwers
+NOmbre  | Tipo   |   Primary key    | Nullabe     
+--------- | ----------  
+user        | String | True | False
+answer | String  | False | False
+questionId  | Integer  | True | False
