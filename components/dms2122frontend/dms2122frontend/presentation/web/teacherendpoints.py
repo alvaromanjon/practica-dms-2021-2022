@@ -151,7 +151,8 @@ class TeacherEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
 
-        created_answer = WebQuestion.edit_question(backend_service, 
+        edited_question = WebQuestion.edit_question(backend_service, 
+                                           request.form['questionId'],
                                            request.form['question'],
                                            request.form['description'],  
                                            request.form['option1'],
@@ -160,7 +161,7 @@ class TeacherEndpoints():
                                            request.form['correct_answer_percentage'],
                                            request.form['incorrect_answer_percentage']
                                            )
-        if not created_answer:
+        if not edited_question:
             return redirect(url_for('get_teacher_add_question'))
         redirect_to = request.form['redirect_to']
         if not redirect_to:
