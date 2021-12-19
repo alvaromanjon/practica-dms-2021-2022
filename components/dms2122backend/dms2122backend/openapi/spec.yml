@@ -47,7 +47,6 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
         - api_key: []
   /questions/add:
     post:
@@ -87,7 +86,6 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
         - api_key: []
   /questions/{id}/edit:
     put:
@@ -133,8 +131,7 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /questions/{id}/preview:
     get:
       summary: Show a preview for the selected question.
@@ -167,8 +164,7 @@ paths:
       tags:
         - questions
       security:
-      - user_token: []
-        api_key: []
+        - api_key: []
   /questions/{id}/answer/{username}:
     post:
       summary: Answers a question.
@@ -219,8 +215,7 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /questions/{id}/answers:
     get:
       summary: Gets all the answers to a question.
@@ -260,8 +255,7 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /questions/{username}/answers:
     get:
       summary: Gets all the answers from an user.
@@ -301,8 +295,7 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
+        - api_key: []
   /questions/{id}/answer:
     get:
       summary: Gets the answer to a question.
@@ -342,8 +335,7 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []      
+        - api_key: []
 components:
   schemas:
     QuestionFullModel:
@@ -421,13 +413,8 @@ components:
       items:
         $ref: '#/components/schemas/AnswerFullModel'
   securitySchemes:
-    user_token:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      x-bearerInfoFunc: dms2122backend.presentation.rest.security.verify_token
     api_key:
       type: apiKey
-      name: X-ApiKey-Auth
+      name: X-ApiKey-Backend
       in: header
       x-apikeyInfoFunc: dms2122backend.presentation.rest.security.verify_api_key
