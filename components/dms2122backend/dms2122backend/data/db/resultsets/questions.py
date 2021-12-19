@@ -114,7 +114,7 @@ class Questions():
 
         if editedQuestion is not None:
             editedQuestion.question = question
-            editedQuestion.desciption = description
+            editedQuestion.description = description
             editedQuestion.option1 = option1
             editedQuestion.option2 = option2
             editedQuestion.true_answer = true_answer
