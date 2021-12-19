@@ -9,6 +9,8 @@ from dms2122frontend.data.rest.authservice import AuthService
 from dms2122frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
 from .webquestion import WebQuestion
+from .webanswer import WebAnswer
+
 
 class StudentEndpoints():
     """ Monostate class responsible of handling the student web endpoint requests.
@@ -59,7 +61,7 @@ class StudentEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
 
-        created_answer = WebQuestion.answer_question(backend_service, 
+        created_answer = WebAnswer.answer_question(backend_service, 
                                            request.form['user'],  
                                            int(request.form['questionId']),
                                            request.form['answer']

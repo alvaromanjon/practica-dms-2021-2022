@@ -10,6 +10,7 @@ from dms2122frontend.data.rest.authservice import AuthService
 from dms2122frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
 from .webquestion import WebQuestion
+from .webanswer import WebAnswer
 
 class TeacherEndpoints():
     """ Monostate class responsible of handing the teacher web endpoint requests.
@@ -131,7 +132,7 @@ class TeacherEndpoints():
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
 
-        created_answer = WebQuestion.answer_question(backend_service, 
+        created_answer = WebAnswer.answer_question(backend_service, 
                                            request.form['user'],  
                                            int(request.form['questionId']),
                                            request.form['answer']
@@ -142,5 +143,25 @@ class TeacherEndpoints():
         if not redirect_to:
             redirect_to = url_for('get_home')
         return redirect(redirect_to)
+
+    @staticmethod
+    def post_teacher_edit_question(auth_service: AuthService, backend_service: BackendService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.Teacher.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        created_answer = WebQuestion.edit_question(backend_service, 
+                                           request.form['user'],  
+                                           int(request.form['questionId']),
+                                           request.form['answer']
+                                           )
+        if not created_answer:
+            return redirect(url_for('get_teacher_add_question'))
+        redirect_to = request.form['redirect_to']
+        if not redirect_to:
+            redirect_to = url_for('get_home')
+        return redirect(redirect_to)
+
 
 
