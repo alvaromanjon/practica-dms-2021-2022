@@ -57,8 +57,8 @@ class BackendService():
             json={
                 'question': question,
                 'description': description,
-                'opt1': option1,
-                'opt2': option2,
+                'option1': option1,
+                'option2': option2,
                 'correct_answer': true_answer,
                 'correct_answer_percentage': correct_question_percentage,
                 'incorrect_answer_percentage': incorrect_question_percentage

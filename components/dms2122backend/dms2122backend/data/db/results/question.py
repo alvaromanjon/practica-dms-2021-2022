@@ -53,8 +53,8 @@ class Question(ResultBase):
             Column('questionId', Integer, autoincrement= 'auto', primary_key=True),
             Column('question', String(32), nullable=False),
             Column('description', String(256), nullable=True),
-            Column('opt1', String(32), nullable=False),
-            Column('opt2', String(32), nullable=False),
+            Column('option1', String(32), nullable=False),
+            Column('option2', String(32), nullable=False),
             Column('true_answer', String(32), nullable=False),
             Column('correct_question_percentage', Float(5), nullable=False),
             Column('incorrect_question_percentage', Float(5), nullable=False)

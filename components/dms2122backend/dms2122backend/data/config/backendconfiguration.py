@@ -26,7 +26,7 @@ class BackendConfiguration(ServiceConfiguration):
 
         self.set_db_connection_string('sqlite:////tmp/dms2122backend.sqlite3.db')
         self.set_service_host('127.0.0.1')
-        self.set_service_port(4000)
+        self.set_service_port(5001)
         self.set_debug_flag(True)
         self.set_password_salt('This salt should be changed ASAP')
         self.set_jws_secret('This JWS secret should be changed ASAP')

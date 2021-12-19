@@ -37,7 +37,7 @@ class Questions():
             - QuestionExistsError: If a question with the same name exists.
 
         Returns:
-            - User: The created `User` result.
+            - Question: The created `Question` result.
         """
         if not question or not option1 or not option2 or not true_answer or not correct_question_percentage or not incorrect_question_percentage:
             raise ValueError('ERROR. The following fields are required:\n-Question\n-Description (optional field) \n-First option\n-Second option\n-True answer\n-Correct question percentage\n-Incorrect question percentage')
@@ -60,39 +60,10 @@ class Questions():
             - session (Session): The session object.
 
         Returns:
-            - List[User]: A list of `User` registers.
+            - List[Question]: A list of `Question` registers.
         """
         query = session.query(Question)
         return query.all()
-
-    @staticmethod
-    def get_question(session: Session, question: str, description:str, option1:str, option2:str, true_answer:str, 
-                correct_question_percentage:float, incorrect_question_percentage:float) -> Optional[Question]:
-        """ Returns a question (if exists).
-
-        Args:
-            - session (Session): The session object.
-            - question (str): A string with the question.
-            - description (str): A string with the question's description.
-            - option1 (str): A string with the first possible answer of the question.
-            - option2 (str): A string with the second possible answer of the question.
-            - true_answer (str): A string with the true answer of the question.
-            - correct_question_percentage (float): A float with the percentage to be added in case of having the correct answer.
-            - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
-
-        Returns:
-            - question: Question that matches the parameters given.
-            - None: If the question doesn't exists.
-        """
-        try:
-            query = session.query(Question).filter_by(question=question, description=description, 
-                                                    option1=option1, option2=option2, true_answer=true_answer, 
-                                                    correct_question_percentage=correct_question_percentage,
-                                                    incorrect_question_percentage=incorrect_question_percentage)
-            questionReturned: Question = query.one()
-        except NoResultFound:
-            return None
-        return questionReturned
     
     @staticmethod
     def get_question_id(session: Session, questionId: int) -> Optional[Question]:
@@ -114,7 +85,7 @@ class Questions():
         return questionReturned
     
     @staticmethod
-    def edit(session: Session, id: int, question:str, description:str, option1:str, option2:str, true_answer:str,
+    def edit(session: Session, questionId: int, question:str, description:str, option1:str, option2:str, true_answer:str,
                 correct_question_percentage:float, incorrect_question_percentage:float) -> Question:
         """ Edit an existing question record.
 
@@ -123,6 +94,7 @@ class Questions():
 
         Args:
             - session (Session): The session object.
+            - questionId (int): Question identifier.
             - question (str): The question string.
             - description (str): The description string.
             - option1 (str): The first option string.
@@ -136,19 +108,19 @@ class Questions():
             - QuestionExistsError: If a question with the same name exists.
 
         Returns:
-            - User: The created `User` result.
+            - Question: The created `Question` result.
         """
-        question_to_edit = Questions.get_question_id(session, id)
+        editedQuestion = Questions.get_question_id(session, questionId)
 
-        if question_to_edit is not None:
-            question_to_edit.question = question
-            question_to_edit.desciption = description
-            question_to_edit.option1 = option1
-            question_to_edit.option2 = option2
-            question_to_edit.true_answer = true_answer
-            question_to_edit.correct_question_percentage = correct_question_percentage
-            question_to_edit.incorrect_question_percentage = incorrect_question_percentage
+        if editedQuestion is not None:
+            editedQuestion.question = question
+            editedQuestion.desciption = description
+            editedQuestion.option1 = option1
+            editedQuestion.option2 = option2
+            editedQuestion.true_answer = true_answer
+            editedQuestion.correct_question_percentage = correct_question_percentage
+            editedQuestion.incorrect_question_percentage = incorrect_question_percentage
 
             session.commit()
-            return question_to_edit
+            return editedQuestion
         raise QuestionNotFoundError()

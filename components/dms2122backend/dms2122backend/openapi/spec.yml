@@ -248,6 +248,12 @@ paths:
             'text/plain':
               schema:
                 type: string
+        '404':
+          description: The question doesn't exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
       tags:
         - questions
         - answers
@@ -283,12 +289,59 @@ paths:
             'text/plain':
               schema:
                 type: string
+        '404':
+          description: The user doesn't exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
       tags:
         - questions
         - answers
       security:
         - user_token: []
           api_key: []
+  /questions/{id}/answer:
+    get:
+      summary: Gets the answer to a question.
+      operationId: dms2122backend.presentation.rest.answer.get_answer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The answer of the question.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/AnswerFullModel'
+        '400':
+          description: Errors in the request.
+          content:
+            'text/plain':
+              schema:
+                type: string
+        '403':
+          description: The requesting user has no permission to do this operation.
+          content:
+            'text/plain':
+              schema:
+                type: string
+        '404':
+          description: The question doesn't exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+      tags:
+        - questions
+        - answers
+      security:
+        - user_token: []
+          api_key: []      
 components:
   schemas:
     QuestionFullModel:

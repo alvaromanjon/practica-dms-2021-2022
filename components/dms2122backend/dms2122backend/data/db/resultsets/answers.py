@@ -46,20 +46,6 @@ class Answers():
             raise
 
     @staticmethod
-    def list_all(session: Session) -> List[Answer]:
-        """Lists every Answer.
-
-        Args:
-            - session (Session): The session object.
-
-        Returns:
-            - List[Answer]: A list of all `Answer`.
-        """
-
-        query = session.query(Answer)
-        return query.all()
-
-    @staticmethod
     def list_all_by_question(session: Session, questionId: int) -> List[Answer]:
         """Lists the `Answer`s assigned to a question.
 
@@ -100,3 +86,24 @@ class Answers():
             user=user
         )
         return query.all()
+
+
+    @staticmethod
+    def get_answer(session: Session, user: str, questionId: int) -> Answer:
+        """Return a answer of a certain question and user.
+        Args:
+            - session (Session): The session object.
+            - user (str): The user name string.
+            - questionId (int): The question id.
+        Raises:
+            - ValueError: If the username is missing.
+        Returns:
+            - Answer: Answer of the question.
+        """
+        if not user:
+            raise ValueError('A user is required.')
+        query = session.query(Answer).filter_by(
+            user=user, 
+            questionId=questionId
+        )
+        return query.one_or_none()
