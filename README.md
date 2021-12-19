@@ -211,25 +211,59 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 ### Questions
 - `/questions`: Obtiene una lista de preguntas 
   - Método: `GET`
-  - Respuesta :`200`  Obtiene la lista correctamente
+  - Respuesta :
+    - `200`  Obtiene la lista correctamente
+
 - `/questions/add`: Crea una nueva pregunta 
   - Método: `POST`
-  - Respuesta :`200` 
-  - - Respuesta :`200` 
+  - Respuesta :
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `409` Fallo con los datos
+  
 -  `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
   - Método: `POST`
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+  
 - `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
   - Método: `GET`
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+  
 - `/questions/{questionId}/edit`: Edita una pregunta existente 
   - Método: `PUT`
-- `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
-  - Método: `POST`
+  - Respuesta :
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+  
 - `/questions/{questionId}/preview`: Muestra una previsualización de la pregunta seleccionada
   - Método: `GET`
+  - Respuesta :
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `404` La pregunta no existe
+- 
 - `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
   - Método: `GET`
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+
 - `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
   - Método: `POST`
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
 
 ### Answers
 - `/questions/{questionId}/answer/{user}`: respuesta a una pregunta 
