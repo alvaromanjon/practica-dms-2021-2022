@@ -63,6 +63,10 @@ def get_student_questions():
 def get_student_preview_question():
     return StudentEndpoints.get_student_preview_question(auth_service)
 
+@app.route("/student/questions/answer", methods=['POST'])
+def post_student_preview_question():
+    return StudentEndpoints.post_student_preview_question(auth_service, backend_service)
+
 @app.route("/teacher", methods=['GET'])
 def get_teacher():
     return TeacherEndpoints.get_teacher(auth_service)
@@ -89,7 +93,7 @@ def get_teacher_preview_question():
 
 @app.route("/questions/preview/{id}", methods=['POST'])
 def post_teacher_preview_question():
-    return TeacherEndpoints.post_teacher_preview_question(auth_service)
+    return TeacherEndpoints.post_teacher_preview_question(auth_service, backend_service)
 
 @app.route("/admin", methods=['GET'])
 def get_admin():
