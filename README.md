@@ -179,20 +179,34 @@ Primero nos aparece la pantalla con las preguntas que tenemos dispo0nible y vemo
 Si le damos al boton responder nos da la opción de responder las preguntas.
 ![Student3](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/preguntas%20student.png)
 # Arquitectura y diseño del frontend
+
 En esta práctica hacemos uso de una arquitectura multicapa, ya que nos permitira separar por capas, ya sean clases. paquetes etc. Los diferentes elementos del código. Esto va a tener la ventaja de que todo este encapsulado y se minimicen las dependencias.
 En nuestro caso el frontend va a contar con dos capas, a esta arquitectura se la conoce como Documento-Vista:
 - Capa de presentación: Esta se encarga de la interacción entre el cliente y el software.
+  Corresponde a `dms2122frontend/dms2122frontend/presentation`
 - Capa de origen de datos: Se encarga de la comunicación con otros sistemas que contienen datos con los que trabaja nuestra aplicación.
-  
+  Corresponde a `dms2122frontend/dms2122frontend/data`
+## Patrones de diseño
+
 Hemos aplicado en esta práctica los patrones: single responsibility, que indíca que un módulo debería tener una sola razón para cambiar, y el interface segregation, nos indíca que ningún cliente debe tener la obligación de utilizar métodos que no necesita. En nuestro caso lo hemos aplicado a la hora de declarar los endpoints, ya que podría declararse todo dentro del archivo `dms2122frontend`, pero lo hemos hecho en distintos archivos endpoint y cada uno se encarga de los endpoints que corresponden con cada rol.
 
-En cuanto a los fundamentos de diseño que hemos utilizado son los siguientes:
+## Mecanismo de reutilización
 
+En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la composición, que indica que los detalles internos de los objetos permanecen ocultos. Esto nos va a permitir favorecer la encapsulación y mantener centrada la responsabilidad de las clases.
 # Arquitectura y diseño del backend 
 
 En este apartado contamos con una arquitectura multicapa, de tal forma que dividiremos en varias capas los artefactos estructurales del diseño. En nuestro caso va a contar con tres capas:
 - Capa de lógica de presentación: Esta capa de lo que se va a encargar es de la interacción entre el usuario y el software.
+  Corresponde a `dms2122backend/dms2122backend/presentation`
 - Capa de lógica de datos: Esta capa se encarga de las comunicaciones con otros sistemas que contienen datos con los que tenemos que trabajar, por ejemplo la base datos, que es donde almacenamos las preguntas, respuestas..
+  Corresponde a `dms2122backend/dms2122backend/data`
 - Capa de lógica de negocio: Esta última capa se encarga del manejo de la aplicación, como puede ser por ejemplo reponder una pregunta que el alumno tiene pendiente.
-  
+  Corresponde a `dms2122backend/dms2122backend/service`
+## Mecanismo de reutilización
+
+En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la composición, que indica que los detalles internos de los objetos permanecen ocultos. Esto nos va a permitir favorecer la encapsulación y mantener centrada la responsabilidad de las clases.
+# Protocolo de comunicaciones entre servicios
+
+
+
 
