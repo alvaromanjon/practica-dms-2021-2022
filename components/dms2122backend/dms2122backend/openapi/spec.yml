@@ -13,7 +13,7 @@ info:
 tags:
   - name: questions
     description: Question-related operations
-  - name: answer
+  - name: answers
     description: Answer-related operations
   - name: server
     description: Operations about the server itself (e.g., server status querying)
