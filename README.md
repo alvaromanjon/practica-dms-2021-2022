@@ -301,7 +301,7 @@ incorrect_question_percentage       | Float |  FALSE   | FALSE
 
 ## Anwers
 NOmbre  | Tipo   |   Primary key    | Nullabe     
---------- | ----------  
+--------- | ----------  | ---------- | ---------- 
 user        | String | True | False
 answer | String  | False | False
 questionId  | Integer  | True | False
