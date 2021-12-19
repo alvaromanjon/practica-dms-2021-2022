@@ -8,7 +8,7 @@ from dms2122common.data import Role
 from dms2122frontend.data.rest.authservice import AuthService
 from dms2122frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
-from .webuser import WebUser
+from .webquestion import WebQuestion
 
 class StudentEndpoints():
     """ Monostate class responsible of handling the student web endpoint requests.
@@ -38,7 +38,7 @@ class StudentEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
 
-        return render_template('/student/questions.html', name=name, roles=session['roles'], preguntas=WebUser.list_questions(backend_service))
+        return render_template('/student/questions.html', name=name, roles=session['roles'], preguntas=WebQuestion.list_questions(backend_service))
     
     @staticmethod
     def get_student_preview_question(auth_service: AuthService) ->Union[Response,Text]:
