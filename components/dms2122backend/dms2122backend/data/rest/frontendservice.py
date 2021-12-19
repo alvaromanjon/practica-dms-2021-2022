@@ -40,7 +40,7 @@ class FrontendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    def create_question(self, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:str,incorrect_question_percentage:str) -> ResponseData:
+    def create_question(self, token: Optional[str], question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:str,incorrect_question_percentage:str) -> ResponseData:
         """ Requests a user creation.
 
         Args:
@@ -53,7 +53,7 @@ class FrontendService():
         """
         response_data: ResponseData = ResponseData()
         response: requests.Response = requests.post(
-            self.__base_url() + '/question/add',
+            self.__base_url() + '/questions/add',
             json={
                 'question': question,
                 'description': description,
@@ -64,7 +64,7 @@ class FrontendService():
                 'incorrect_answer_percentage': incorrect_question_percentage
             },
             headers={
-                'Authorization': f'Bearer User',
+                'Authorization': f'Bearer {token}',
                 self.__apikey_header: self.__apikey_secret
             }
         )

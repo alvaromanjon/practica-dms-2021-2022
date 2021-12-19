@@ -98,3 +98,22 @@ class WebUser():
         if response.get_content() is not None and isinstance(response.get_content(), list):
             return list(response.get_content())
         return []
+
+    @staticmethod
+    def create_question(backend_service: BackendService, question:str,description:str,option1:str,option2:str,true_answer:str,correct_question_percentage:str,incorrect_question_percentage:str) -> Optional[Dict]:
+        """ Creates a user in the authentication service.
+
+        Args:
+            - auth_service (AuthService): The authentication service.
+            - username (str): The name of the user to be created.
+            - password (str): The password of the user to be created.
+
+        Returns:
+            - Dict: A dictionary with the newly created user if successful.
+            - None: Nothing on error.
+        """
+        response: ResponseData = backend_service.create_question(
+            session.get('token'), question,description,option1,option2,true_answer,correct_question_percentage,incorrect_question_percentage)
+        WebUtils.flash_response_messages(response)
+        return response.get_content()
+
