@@ -207,6 +207,33 @@ En este apartado contamos con una arquitectura multicapa, de tal forma que divid
 En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la composición, que indica que los detalles internos de los objetos permanecen ocultos. Esto nos va a permitir favorecer la encapsulación y mantener centrada la responsabilidad de las clases.
 # Protocolo de comunicaciones entre servicios
 
+## Backend service REST API
+### Questions
+- `/questions`: Obtiene una lista de preguntas 
+  Método: `GET`
+- `/questions/add`: Crea una nueva pregunta 
+  Método: `POST`
+- `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
+  Método: `POST`
+- `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
+  Método: `GET`
+- `/questions/{questionId}/edit`: Edita una pregunta existente 
+  Método: `PUT`
+- `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
+  Método: `POST`
+- `/questions/{questionId}/preview`: Muestra una previsualización de la pregunta seleccionada
+  Método: `GET`
+- `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
+  Método: `GET`
+- `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
+  Método: `POST`
 
-
-
+### Answers
+- `/questions/{questionId}/answer/{user}`: respuesta a una pregunta 
+  Método: `POST`
+- `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
+  Método: `GET`
+- `/questions/{user}/answer`: Obtiene todas las respuestas de un usuario
+  Método: `GET`
+- `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
+  Método: `POST`
