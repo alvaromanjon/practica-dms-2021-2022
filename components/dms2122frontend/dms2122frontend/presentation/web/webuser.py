@@ -116,3 +116,4 @@ class WebUser():
             session.get('token'), question,description,option1,option2,true_answer,correct_question_percentage,incorrect_question_percentage)
         WebUtils.flash_response_messages(response)
         return response.get_content()
+
