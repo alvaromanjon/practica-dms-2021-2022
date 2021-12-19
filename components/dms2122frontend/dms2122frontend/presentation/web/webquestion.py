@@ -95,22 +95,6 @@ class WebQuestion():
         WebUtils.flash_response_messages(response)
         return response.get_content()
 
-    @staticmethod
-    def answer_question(backend_service: BackendService, user: str, questionId: int, answer: str) -> Optional[Dict]:
-        """ Answers a question in the backend service.
 
-        Args:
-            - backend_service (BackendService): The backend service.
-            - user (str): A string with the user.
-            - answer (str): A string with the question's answer putted by student.
-            - questionId (str): A string with the questionId of the question.
-
-        Returns:
-            - Dict: A dictionary with the newly created question if successful.
-            - None: Nothing on error.
-        """
-        response: ResponseData = backend_service.answer_question(session.get('token'), user, questionId, answer)
-        WebUtils.flash_response_messages(response)
-        return response.get_content()
 
 
