@@ -9,3 +9,5 @@ pushd "${TEMP_DIR}"
 popd
 
 rm -R "${TEMP_DIR}"
+
+dms2122backend-create-database-of-questions
