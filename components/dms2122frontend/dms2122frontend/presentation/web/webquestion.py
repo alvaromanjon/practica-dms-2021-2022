@@ -96,7 +96,7 @@ class WebQuestion():
         return response.get_content()
 
     @staticmethod
-    def answer_question(backend_service: BackendService, user: str, answer: str, questionId: int) -> Optional[Dict]:
+    def answer_question(backend_service: BackendService, user: str, questionId: int, answer: str) -> Optional[Dict]:
         """ Answers a question in the backend service.
 
         Args:
