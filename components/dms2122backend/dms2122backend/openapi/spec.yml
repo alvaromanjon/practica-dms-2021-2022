@@ -305,9 +305,9 @@ components:
         true_answer:
           type: string
         correct_question_percentage:
-          type: float
+          type: number
         incorrect_question_percentage:
-          type: float
+          type: number
       required:
         - question
         - description
@@ -316,7 +316,6 @@ components:
         - true_answer
         - correct_question_percentage
         - incorrect_question_percentage
-    
     QuestionFullIdModel:
       type: object
       properties:
@@ -333,9 +332,9 @@ components:
         true_answer:
           type: string
         correct_question_percentage:
-          type: float
+          type: number
         incorrect_question_percentage:
-          type: float
+          type: number
       required:
         - id
         - question
@@ -345,12 +344,10 @@ components:
         - true_answer
         - correct_question_percentage
         - incorrect_question_percentage
-    
     QuestionsFullListModel:
       type: array
       items:
         $ref: '#/components/schemas/QuestionFullIdModel'
-    
     AnswerFullModel:
       type: object
       properties:
@@ -358,18 +355,16 @@ components:
           type: string
         answer:
           type: string
-        questionId:
+        question_id:
           type: integer
       required:
         - user
         - answer
-        - questionId
-
+        - question_id
     AnswersFullListModel:
       type: array
       items:
         $ref: '#/components/schemas/AnswerFullModel'
-
   securitySchemes:
     user_token:
       type: http
