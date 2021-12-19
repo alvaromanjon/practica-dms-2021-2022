@@ -18,16 +18,16 @@
                     <th class="alignleft" width="7%">Porcentaje de suma</th>
                     <th class="alignleft" width="5%">Porcentaje de resta</th>
                 </tr>
-                {% for pregunta in preguntas %}    
+                {% for question in questions %}    
                     <tr class=highlightable>
-                        <td class="alignleft" width="15%">{{ pregunta['nombre_pregunta'] }}</td>
-                        <td class="alignleft" width="25%">{{ pregunta['enunciado'] }}</td>
-                        <td class="alignleft">{{ pregunta['opcion1'] }}</td>
-                        <td class="alignleft">{{ pregunta['opcion2'] }}</td>
-                        <td class="alignleft">{{ pregunta['respuesta_correcta'] }}</td>
-                        <td class="alignleft">{{ pregunta['porcentaje_correcta'] }}</td>
-                        <td class="alignleft">{{ pregunta['porcentaje_incorrecta'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/questions/preview/?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/questions', 'Previsualizar') }}{{ button('bluebg', '/questions/edit?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/questions', 'Editar') }}</td>
+                        <td class="alignleft" width="15%">{{ question['question'] }}</td>
+                        <td class="alignleft" width="25%">{{ question['description'] }}</td>
+                        <td class="alignleft">{{ question['option1'] }}</td>
+                        <td class="alignleft">{{ question['option2'] }}</td>
+                        <td class="alignleft">{{ question['true_answer'] }}</td>
+                        <td class="alignleft">{{ question['correct_answer_percentage'] }}</td>
+                        <td class="alignleft">{{ question['incorrect_answer_percentage'] }}</td>
+                        <td class="alignright">{{ button('bluebg', '/questions/preview?questionId=' + question['questionId']|string + '&redirect_to=/questions', 'Previsualizar') }}{{ button('bluebg', '/questions/edit?questionId=' + question['questionId']|string + '&redirect_to=/questions', 'Editar') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

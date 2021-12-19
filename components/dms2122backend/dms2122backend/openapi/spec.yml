@@ -47,7 +47,6 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
         - api_key: []
   /questions/add:
     post:
@@ -87,14 +86,13 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
         - api_key: []
-  /questions/{id}/edit:
+  /questions/{questionId}/edit:
     put:
       summary: Edits an existing question.
       operationId: dms2122backend.presentation.rest.question.edit_question
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -133,14 +131,13 @@ paths:
       tags:
         - questions
       security:
-        - user_token: []
-          api_key: []
-  /questions/{id}/preview:
+        - api_key: []
+  /questions/{questionId}/preview:
     get:
       summary: Show a preview for the selected question.
       operationId: dms2122backend.presentation.rest.question.get_question_id
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -167,19 +164,18 @@ paths:
       tags:
         - questions
       security:
-      - user_token: []
-        api_key: []
-  /questions/{id}/answer/{username}:
+        - api_key: []
+  /questions/{questionId}/answer/{user}:
     post:
       summary: Answers a question.
       operationId: dms2122backend.presentation.rest.answer.create_answer
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
             type: integer
-        - name: username
+        - name: user
           in: path
           required: true
           schema:
@@ -219,14 +215,13 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
-  /questions/{id}/answers:
+        - api_key: []
+  /questions/{questionId}/answers:
     get:
       summary: Gets all the answers to a question.
       operationId: dms2122backend.presentation.rest.answer.list_answers_by_question
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -260,14 +255,13 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
-  /questions/{username}/answers:
+        - api_key: []
+  /questions/{user}/answers:
     get:
       summary: Gets all the answers from an user.
       operationId: dms2122backend.presentation.rest.answer.list_answers_by_user
       parameters:
-        - name: username
+        - name: user
           in: path
           required: true
           schema:
@@ -301,14 +295,18 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []
-  /questions/{id}/answer:
+        - api_key: []
+  /questions/{user}/answers/{questionId}:
     get:
       summary: Gets the answer to a question.
       operationId: dms2122backend.presentation.rest.answer.get_answer
       parameters:
-        - name: id
+        - name: user
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: questionId
           in: path
           required: true
           schema:
@@ -342,8 +340,7 @@ paths:
         - questions
         - answers
       security:
-        - user_token: []
-          api_key: []      
+        - api_key: []
 components:
   schemas:
     QuestionFullModel:
@@ -374,7 +371,7 @@ components:
     QuestionFullIdModel:
       type: object
       properties:
-        id:
+        questionId:
           type: integer
         question:
           type: string
@@ -391,7 +388,7 @@ components:
         incorrect_question_percentage:
           type: number
       required:
-        - id
+        - questionId
         - question
         - description
         - option1
@@ -410,24 +407,19 @@ components:
           type: string
         answer:
           type: string
-        question_id:
+        questionId:
           type: integer
       required:
         - user
         - answer
-        - question_id
+        - questionId
     AnswersFullListModel:
       type: array
       items:
         $ref: '#/components/schemas/AnswerFullModel'
   securitySchemes:
-    user_token:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      x-bearerInfoFunc: dms2122backend.presentation.rest.security.verify_token
     api_key:
       type: apiKey
-      name: X-ApiKey-Auth
+      name: X-ApiKey-Backend
       in: header
       x-apikeyInfoFunc: dms2122backend.presentation.rest.security.verify_api_key

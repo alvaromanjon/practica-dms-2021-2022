@@ -9,7 +9,7 @@ from dms2122frontend.data.rest import backendservice
 from dms2122frontend.data.rest.authservice import AuthService
 from dms2122frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
-from .webuser import WebUser
+from .webquestion import WebQuestion
 
 class TeacherEndpoints():
     """ Monostate class responsible of handing the teacher web endpoint requests.
@@ -32,14 +32,22 @@ class TeacherEndpoints():
         return render_template('teacher.html', name=name, roles=session['roles'])
 
     @staticmethod
-    def get_teacher_questions(auth_service: AuthService, backend_service: BackendService) ->Union[Response,Text]:
+    def get_teacher_questions(auth_service: AuthService, backend_service: BackendService) -> Union[Response,Text]:
+        """ Handles the GET requests to the questions teacher endpoint.
+        Args:
+            - auth_service (AuthService): The authentication service.
+            - backend_service (BackendService): The backend service.
+        Returns:
+            - Union[Response,Text]: The generated response to the request.
+        """
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
 
-        return render_template('/teacher/questions.html', name=name, roles=session['roles'], preguntas=WebUser.list_questions(backend_service))
+        return render_template('/teacher/questions.html', name=name, roles=session['roles'], 
+                                questions=WebQuestion.list_questions(backend_service))
 
     @staticmethod
     def get_teacher_add_question(auth_service: AuthService) -> Union[Response, Text]:
@@ -66,6 +74,7 @@ class TeacherEndpoints():
 
         Args:
             - auth_service (AuthService): The authentication service.
+            - backend_service (BackendService): The backend service.
 
         Returns:
             - Union[Response,Text]: The generated response to the request.
@@ -74,14 +83,13 @@ class TeacherEndpoints():
             return redirect(url_for('get_login'))
         if Role.Teacher.name not in session['roles']:
             return redirect(url_for('get_home'))
-        '''if request.form['password'] != request.form['confirmpassword']:
-            flash('Password confirmation mismatch', 'error')
-            return redirect(url_for('get_teacher_add_question'))'''
-        created_question = WebUser.create_question(backend_service,request.form['question'],
+
+        created_question = WebQuestion.create_question(backend_service, 
+                                           request.form['question'],
                                            request.form['description'],  
-                                           request.form['opt1'],
-                                           request.form['opt2'],
-                                           request.form['true_answer'],
+                                           request.form['option1'],
+                                           request.form['option2'],
+                                           str(request.form['true_answer']),
                                            request.form['correct_answer_percentage'],
                                            request.form['incorrect_answer_percentage']
                                            )
