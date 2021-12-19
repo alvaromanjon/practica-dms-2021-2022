@@ -210,23 +210,26 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 ## Backend service REST API
 ### Questions
 - `/questions`: Obtiene una lista de preguntas 
-  Método: `GET`
+  - Método: `GET`
+  - Respuesta :`200`  Obtiene la lista correctamente
 - `/questions/add`: Crea una nueva pregunta 
-  Método: `POST`
-- `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
-  Método: `POST`
+  - Método: `POST`
+  - Respuesta :`200` 
+  - - Respuesta :`200` 
+-  `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
+  - Método: `POST`
 - `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
-  Método: `GET`
+  - Método: `GET`
 - `/questions/{questionId}/edit`: Edita una pregunta existente 
-  Método: `PUT`
+  - Método: `PUT`
 - `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
-  Método: `POST`
+  - Método: `POST`
 - `/questions/{questionId}/preview`: Muestra una previsualización de la pregunta seleccionada
-  Método: `GET`
+  - Método: `GET`
 - `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
-  Método: `GET`
+  - Método: `GET`
 - `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
-  Método: `POST`
+  - Método: `POST`
 
 ### Answers
 - `/questions/{questionId}/answer/{user}`: respuesta a una pregunta 
