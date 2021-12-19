@@ -4,10 +4,11 @@ from dms2122common.data import Role
 from dms2122backend.data.config import BackendConfiguration
 from dms2122backend.data.db import Schema
 from dms2122backend.service.questionservices import QuestionServices
-from dms2122auth.service.roleservices import RoleServices
 
 cfg: BackendConfiguration = BackendConfiguration()
 cfg.load_from_file(cfg.default_config_file())
 db: Schema = Schema(cfg)
-QuestionServices.create_question('A', 'BC', '77,81 m/s', '9,81 m/s', '9,81 m/s', '10.0', '5.0', db)
-RoleServices.grant_role('admin', Role.Admin, db)
+
+QuestionServices.create_question("Radio del Sol", "¿Cuál es el radio del Sol?", "696.340 km", "432.182 km", "1", "10", "5", db)
+QuestionServices.create_question("Distancia Tierra y Sol", "¿A qué distancia está el Sol de la Tierra?", "28.371.823 km", "149.597.870 km", "2", "10", "5", db)
+QuestionServices.create_question("Constante G", "¿Cuál es el valor de la constante de gravitación universal G?", "6,67*10^-11", "9,8*10^-11", "1", "10", "5", db)
