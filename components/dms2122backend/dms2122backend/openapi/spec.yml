@@ -87,12 +87,12 @@ paths:
         - questions
       security:
         - api_key: []
-  /questions/{id}/edit:
+  /questions/{questionId}/edit:
     put:
       summary: Edits an existing question.
       operationId: dms2122backend.presentation.rest.question.edit_question
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -132,12 +132,12 @@ paths:
         - questions
       security:
         - api_key: []
-  /questions/{id}/preview:
+  /questions/{questionId}/preview:
     get:
       summary: Show a preview for the selected question.
       operationId: dms2122backend.presentation.rest.question.get_question_id
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -165,17 +165,17 @@ paths:
         - questions
       security:
         - api_key: []
-  /questions/{id}/answer/{username}:
+  /questions/{questionId}/answer/{user}:
     post:
       summary: Answers a question.
       operationId: dms2122backend.presentation.rest.answer.create_answer
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
             type: integer
-        - name: username
+        - name: user
           in: path
           required: true
           schema:
@@ -216,12 +216,12 @@ paths:
         - answers
       security:
         - api_key: []
-  /questions/{id}/answers:
+  /questions/{questionId}/answers:
     get:
       summary: Gets all the answers to a question.
       operationId: dms2122backend.presentation.rest.answer.list_answers_by_question
       parameters:
-        - name: id
+        - name: questionId
           in: path
           required: true
           schema:
@@ -256,12 +256,12 @@ paths:
         - answers
       security:
         - api_key: []
-  /questions/{username}/answers:
+  /questions/{user}/answers:
     get:
       summary: Gets all the answers from an user.
       operationId: dms2122backend.presentation.rest.answer.list_answers_by_user
       parameters:
-        - name: username
+        - name: user
           in: path
           required: true
           schema:
@@ -296,12 +296,17 @@ paths:
         - answers
       security:
         - api_key: []
-  /questions/{id}/answer:
+  /questions/{user}/answers/{questionId}:
     get:
       summary: Gets the answer to a question.
       operationId: dms2122backend.presentation.rest.answer.get_answer
       parameters:
-        - name: id
+        - name: user
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: questionId
           in: path
           required: true
           schema:
@@ -366,7 +371,7 @@ components:
     QuestionFullIdModel:
       type: object
       properties:
-        id:
+        questionId:
           type: integer
         question:
           type: string
@@ -383,7 +388,7 @@ components:
         incorrect_question_percentage:
           type: number
       required:
-        - id
+        - questionId
         - question
         - description
         - option1
@@ -402,12 +407,12 @@ components:
           type: string
         answer:
           type: string
-        question_id:
+        questionId:
           type: integer
       required:
         - user
         - answer
-        - question_id
+        - questionId
     AnswersFullListModel:
       type: array
       items:
