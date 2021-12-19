@@ -25,6 +25,8 @@ services:
     networks:
       dms2122:
         ipv4_address: 172.10.1.20
+    ports:
+      - "5001:5001"
 
   frontend:
     build:
@@ -38,6 +40,8 @@ services:
     networks:
       dms2122:
         ipv4_address: 172.10.1.30
+    ports:
+      - "8080:8080"
 
 networks:
   dms2122:

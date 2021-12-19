@@ -1,6 +1,6 @@
 db_connection_string: 'sqlite:////tmp/database.db'
 service_host: '172.10.1.20'
-service_port: 5000
+service_port: 5001
 debug: true
 authorized_api_keys:
   - "1234" # FOR FAST TESTING PURPOSES. TODO: REMOVE

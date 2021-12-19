@@ -35,7 +35,7 @@ class FrontendConfiguration(ServiceConfiguration):
         })
         self.set_backend_service({
             'host': '127.0.0.1',
-            'port': 5000,
+            'port': 5001,
             'apikey_secret': 'This is another frontend API key'
         })
 
