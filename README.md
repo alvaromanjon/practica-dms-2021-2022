@@ -208,6 +208,9 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 # Protocolo de comunicaciones entre servicios
 
 ## Backend service REST API
+
+![Backend](https://github.com/alvaromanjon/practica-dms-2021-2022/blob/main/imagenes/Backend.png)
+
 ### Questions
 - `/`: Verifica que el servidor funciona correctamente
   - Método: `GET`
@@ -288,7 +291,7 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
     - `404` La pregunta no existe
 
 ## question
-Nombre  | Tipo         |   Primary key    | Nullabe
+Nombre  | Tipo         |   Primary key    | Nullable
 --------- | ----------  | ------- | --------
 questionId        | Integer |TRUE  | FALSE
 question | String |    FALSE    | FALSE
@@ -299,8 +302,8 @@ true_answer   | String | FALSE    | FALSE
 correct_question_percentage   | Float | FALSE       | FALSE
 incorrect_question_percentage       | Float |  FALSE   | FALSE
 
-## Anwers
-Nombre  | Tipo   |   Primary key    | Nullabe     
+## Answer
+Nombre  | Tipo   |   Primary key    | Nullable     
 --------- | ----------  | ---------- | ---------- 
 user        | String | True | False
 answer | String  | False | False
