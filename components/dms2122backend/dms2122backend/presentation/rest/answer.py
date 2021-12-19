@@ -72,11 +72,11 @@ def list_answers_by_user(user: str) -> Tuple[Union[List[Dict], str], Optional[in
             return ('The user does not exist', HTTPStatus.NOT_FOUND.value)
     return (answersListed, HTTPStatus.OK.value)
 
-def get_answer(user: str, questionId: int) -> Tuple[Union[List[Dict], str], Optional[int]]:
+def get_answer(user: str, questionId: int) -> Tuple[Union[Dict, str], Optional[int]]:
     """Gets the answer of a question.
 
     Returns:
-        - Tuple[Union[List[Dict], str], Optional[int]]: A tuple with a list of dictionaries for the answers' data
+        - Tuple[Union[Dict, str], Optional[int]]: A tuple with a list of dictionaries for the answers' data
           and code:
         - 200 OK if the answers have been returned.
         - 400 BAD REQUEST when a mandatory argument is missing.

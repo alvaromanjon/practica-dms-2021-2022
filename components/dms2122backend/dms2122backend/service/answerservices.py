@@ -41,6 +41,8 @@ class AnswerServices():
             raise ex
         finally:
             schema.remove_session()
+        
+        return out
 
     @staticmethod
     def list_all_by_question(schema: Schema, questionId: int) -> List[Dict]:
@@ -66,7 +68,7 @@ class AnswerServices():
         return out
 
     @staticmethod
-    def list_all_by_user(schema: Schema, user: str) -> List[Answer]:
+    def list_all_by_user(schema: Schema, user: str) -> List[Dict]:
         """Lists the `Answer`s assigned to a certain user.
 
         Args:

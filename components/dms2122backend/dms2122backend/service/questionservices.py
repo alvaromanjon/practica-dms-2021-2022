@@ -40,7 +40,7 @@ class QuestionServices():
         try:
             newQuestion: Question = Questions.create(session, question, description, option1, option2, true_answer, 
                                         correct_question_percentage, incorrect_question_percentage)
-            out['questionId'] = newQuestion.questionId
+            out['questionId'] = newQuestion.questionId #type: ignore
             out['question'] = newQuestion.question
             out['description'] = newQuestion.description
             out['option1'] = newQuestion.option1
@@ -67,16 +67,16 @@ class QuestionServices():
         out: List[Dict] = []
         session: Session = schema.new_session()
         questionsReturned: List[Question] = Questions.list_all(session)
-        for question in questionsReturned:
+        for eachQuestion in questionsReturned:
             out.append({
-                'questionId': questionsReturned.questionId,
-                'question': questionsReturned.question,
-                'description': questionsReturned.description,
-                'option1': questionsReturned.option1,
-                'option2': questionsReturned.option2,
-                'true_answer': questionsReturned.true_answer,
-                'correct_question_percentage': questionsReturned.correct_question_percentage,
-                'incorrect_question_percentage': questionsReturned.incorrect_question_percentage
+                'questionId': eachQuestion.questionId, #type: ignore
+                'question': eachQuestion.question,
+                'description': eachQuestion.description,
+                'option1': eachQuestion.option1,
+                'option2': eachQuestion.option2,
+                'true_answer': eachQuestion.true_answer,
+                'correct_question_percentage': eachQuestion.correct_question_percentage,
+                'incorrect_question_percentage': eachQuestion.incorrect_question_percentage
             })
         schema.remove_session()
         return out
@@ -101,7 +101,7 @@ class QuestionServices():
         try:
             questionReturned = Questions.get_question_id(session, questionId)
             if questionReturned is not None:
-                out['questionId'] = questionReturned.questionId
+                out['questionId'] = questionReturned.questionId #type: ignore
                 out['question'] = questionReturned.question
                 out['description'] = questionReturned.description
                 out['option1'] = questionReturned.option1
@@ -143,7 +143,7 @@ class QuestionServices():
         try:
             editedQuestion: Question = Questions.edit(session, questionId, question, description, option1, option2, true_answer, 
                                         correct_question_percentage, incorrect_question_percentage)
-            out['questionId'] = editedQuestion.questionId
+            out['questionId'] = editedQuestion.questionId # type: ignore
             out['question'] = editedQuestion.question
             out['description'] = editedQuestion.description
             out['option1'] = editedQuestion.option1

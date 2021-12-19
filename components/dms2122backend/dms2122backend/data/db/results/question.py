@@ -20,6 +20,7 @@ class Question(ResultBase):
         Initializes a user record.
 
         Args:
+            - questionId (int): Question identifier.
             - question (str): A string with the question.
             - description (str): A string with the question's description.
             - option1 (str): A string with the first possible answer of the question.
@@ -29,7 +30,7 @@ class Question(ResultBase):
             - incorrect_question_percentage (float): A float with the percentage to be substracted in case of having the incorrect answer.
         """
         self.question: str = question
-        self.desciption: str = description
+        self.description: str = description
         self.option1: str = option1
         self.option2: str = option2
         self.true_answer: str = true_answer
