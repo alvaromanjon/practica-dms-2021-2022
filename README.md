@@ -209,6 +209,11 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 
 ## Backend service REST API
 ### Questions
+- `/`: Verifica que el servidor funciona correctamente
+  - Método: `GET`
+  - Respuesta :
+    - `200`  El servidor funciona correctamente
+
 - `/questions`: Obtiene una lista de preguntas 
   - Método: `GET`
   - Respuesta :
@@ -221,20 +226,6 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
     - `400` Fallo en la solicitud
     - `403` El usuario no tiene permisos para esta operación
     - `409` Fallo con los datos
-  
--  `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
-  - Método: `POST`
-    - `200` Funciona correctamente
-    - `400` Fallo en la solicitud
-    - `403` El usuario no tiene permisos para esta operación
-    - `404` La pregunta no existe
-  
-- `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
-  - Método: `GET`
-    - `200` Funciona correctamente
-    - `400` Fallo en la solicitud
-    - `403` El usuario no tiene permisos para esta operación
-    - `404` La pregunta no existe
   
 - `/questions/{questionId}/edit`: Edita una pregunta existente 
   - Método: `PUT`
@@ -250,27 +241,34 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
     - `404` La pregunta no existe
-- 
-- `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
-  - Método: `GET`
-    - `200` Funciona correctamente
-    - `400` Fallo en la solicitud
-    - `403` El usuario no tiene permisos para esta operación
-    - `404` La pregunta no existe
 
-- `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
+### Answers
+-  `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
   - Método: `POST`
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
     - `403` El usuario no tiene permisos para esta operación
     - `404` La pregunta no existe
-
-### Answers
-- `/questions/{questionId}/answer/{user}`: respuesta a una pregunta 
-  Método: `POST`
+  
 - `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
-  Método: `GET`
-- `/questions/{user}/answer`: Obtiene todas las respuestas de un usuario
-  Método: `GET`
+  - Método: `GET`
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+  
+- `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
+  - Método: `GET`
+  - Respuesta :
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
+  
 - `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
-  Método: `POST`
+  - Método: `POST`
+  - Respuesta :
+    - `200` Funciona correctamente
+    - `400` Fallo en la solicitud
+    - `403` El usuario no tiene permisos para esta operación
+    - `404` La pregunta no existe
