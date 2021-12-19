@@ -47,6 +47,7 @@ paths:
       tags:
         - questions
       security:
+        - user_token: []
         - api_key: []
   /questions/add:
     post:
@@ -86,6 +87,7 @@ paths:
       tags:
         - questions
       security:
+        - user_token: []
         - api_key: []
   /questions/{id}/edit:
     put:
