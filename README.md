@@ -229,6 +229,8 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
   
 - `/questions/{questionId}/edit`: Edita una pregunta existente 
   - Método: `PUT`
+  - Parámetros
+    - `questionId` 
   - Respuesta :
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
@@ -237,6 +239,8 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
   
 - `/questions/{questionId}/preview`: Muestra una previsualización de la pregunta seleccionada
   - Método: `GET`
+  - Parámetros
+    - `questionId` 
   - Respuesta :
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
@@ -245,6 +249,9 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
 ### Answers
 -  `/questions/{questionId}/answer/{user}`: Respuesta a una pregunta 
   - Método: `POST`
+  - Parámetros
+    - `questionId` 
+  - Respuesta:
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
     - `403` El usuario no tiene permisos para esta operación
@@ -252,6 +259,9 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
   
 - `/questions/{questionId}/answer`: Obtiene todas las respuestas de una pregunta
   - Método: `GET`
+  - Parámetros
+    - `questionId`
+  - Respuesta_:
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
     - `403` El usuario no tiene permisos para esta operación
@@ -259,6 +269,8 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
   
 - `/questions/{user}/answers`: Obtiene todas las respuestas de un usuario
   - Método: `GET`
+  - Parámetros
+    - `user`
   - Respuesta :
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
@@ -267,8 +279,22 @@ En cuanto a los mecanismo de reutilización en nuestro caso hemos optado por la 
   
 - `/questions/{user}/answers/{questionId}`: Obtiene la respuesta de una pregunta
   - Método: `POST`
+  - Parámetros
+    - `user`
   - Respuesta :
     - `200` Funciona correctamente
     - `400` Fallo en la solicitud
     - `403` El usuario no tiene permisos para esta operación
     - `404` La pregunta no existe
+
+## question
+Nombre  | Tipo         |   Primary key    | Nullabe
+--------- | ----------  | ------- | --------
+questionId        | Integer |TRUE  | FALSE
+question | String(64) |    FALSE    | FALSE
+description   | String(64) |    FALSE    | FALSE
+option1 | String(64) |  FALSE     | FALSE
+option2 | String(64) | FALSE     |  FALSE
+true_answer   | String(64) | FALSE    | FALSE
+ccorrect_question_percentage   | Float(2,2) | FALSE       | FALSE
+incorrect_question_percentage       | Float(2,2) |  FALSE   | FALSE
