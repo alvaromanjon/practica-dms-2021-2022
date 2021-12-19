@@ -13,11 +13,11 @@
                     <th class="alignleft">Nombre</th>
                     <th class="alignleft">Enunciado</th>
                 </tr>
-                {% for pregunta in preguntas %}    
+                {% for question in questions %}    
                     <tr class=highlightable>
-                        <td class="alignleft">{{ pregunta['nombre_pregunta'] }}</td>
-                        <td class="alignleft">{{ pregunta['enunciado'] }}</td>
-                        <td class="alignright">{{ button('bluebg', '/student/questions/answer?nombre_pregunta=' + pregunta['nombre_pregunta'] + '&redirect_to=/student/questions', 'Responder') }}</td>
+                        <td class="alignleft">{{ question['question'] }}</td>
+                        <td class="alignleft">{{ question['description'] }}</td>
+                        <td class="alignright">{{ button('bluebg', '/student/questions/answer?questionId=' + question['questionId'] + '&redirect_to=/student/questions', 'Responder') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
