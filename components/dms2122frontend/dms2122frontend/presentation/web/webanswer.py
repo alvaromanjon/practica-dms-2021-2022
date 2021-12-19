@@ -53,7 +53,7 @@ class WebAnswer():
         Returns:
             - List: A list of question data dictionaries (the list may be empty)
         """
-        response: ResponseData = backend_service.list_answers_to_question(session.get('token'),user)
+        response: ResponseData = backend_service.list_answers_from_user(session.get('token'),user)
         WebUtils.flash_response_messages(response)
         if response.get_content() is not None and isinstance(response.get_content(), list):
             return list(response.get_content())

@@ -145,7 +145,7 @@ class TeacherEndpoints():
         return redirect(redirect_to)
 
     @staticmethod
-    def post_teacher_preview_question(auth_service: AuthService, backend_service: BackendService):
+    def post_teacher_edit_question(auth_service: AuthService, backend_service: BackendService):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
         if Role.Teacher.name not in session['roles']:
