@@ -152,9 +152,13 @@ class TeacherEndpoints():
             return redirect(url_for('get_home'))
 
         created_answer = WebQuestion.edit_question(backend_service, 
-                                           request.form['user'],  
-                                           int(request.form['questionId']),
-                                           request.form['answer']
+                                           request.form['question'],
+                                           request.form['description'],  
+                                           request.form['option1'],
+                                           request.form['option2'],
+                                           str(request.form['true_answer']),
+                                           request.form['correct_answer_percentage'],
+                                           request.form['incorrect_answer_percentage']
                                            )
         if not created_answer:
             return redirect(url_for('get_teacher_add_question'))
